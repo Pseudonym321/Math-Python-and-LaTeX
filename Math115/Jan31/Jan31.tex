@@ -1,0 +1,207 @@
+\documentclass{article}
+
+%other packages
+\usepackage[a4paper]{geometry}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\setlength\parindent{0pt}
+\usepackage{enumitem}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{polynom}
+\def\scaleint#1{\vcenter{\hbox{\scaleto[3ex]{\displaystyle\int}{#1}}}}
+\usepackage{array}
+\newcolumntype{C}{>{{}}c<{{}}} % for '+' and '-' symbols
+\newcolumntype{R}{>{\displaystyle}r} % automatic display-style math mode 
+\usepackage{tabularray}
+\usepackage{dcolumn,tabularx,booktabs}
+\usepackage[most]{tcolorbox}
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{autobreak}
+
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    trig format=deg,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{document}
+
+Math 115 - Week 5, Class 13 - 31 Jan 2024
+\hrule
+
+\vspace{10pt}
+
+For indeterminacies of the types ``$\frac{0}{0}$" or ``$\frac{\infty}{\infty}$,"
+
+\[\underset{x\to-\infty}{\underset{x\to\infty}{\underset{\mbox{or}}{\underset{x\to a}{\lim}}}}\left(\frac{f}{g}\right)(x)=\underset{x\to-\infty}{\underset{x\to\infty}{\underset{\mbox{or}}{\underset{x\to a}{\lim}}}}\left(\frac{f^\prime}{g^\prime}\right)(x)\]
+
+\vspace{10pt}
+
+Other indeterminate forms include ``$0\cdot\infty$" and ``$1^\infty$," though L'Hospital's Rule does not apply to them readily - they must be manipulated first.
+
+\vspace{10pt}
+
+L'Hospital's Rule is repeatable if the resulting limit is of an indeterminate form of the correct type. For instance, the following two limits are not cases where we would apply this rule.
+
+\[\lim_{x\to0}\frac{\cosh x}{\cos2x}=\frac{0}{1}=0\]
+
+\[\lim_{x\to\infty}\frac{e^x}{\sin^23x+1}=\frac{\infty}{\mbox{positive, bounded}}=\infty\]
+
+\vspace{10pt}
+
+Recall:
+
+\[1\leq\sin^23x+1\leq2\]
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to\infty}\frac{x+\sin x}{x+\cos x}$
+
+\vspace{10pt}
+
+\begin{align*}
+\lim_{x\to\infty}\frac{x+\sin x}{x+\cos x}&\overset{L'H}{=\joinrel=\joinrel=}\lim_{x\to\infty}\frac{1+\cos x}{1-\sin x}\\
+&=\mbox{oscillates, so undefined}
+\end{align*}
+
+\vspace{10pt}
+
+A common theme in taking limits of quotients is to divide the numerator and denominator by the dominating term. For instance;
+
+\[\lim_{x\to\infty}\frac{x+\sin x}{x+\cos x}=\lim_{x\to\infty}\frac{1+\frac{\sin x}{x}}{1+\frac{\cos x}{x}}\]
+
+\vspace{10pt}
+
+And we can apply the Sandwich Theorem to obtain our answer;
+
+\[\frac{-1}{x}\leq\frac{\sin x}{x}\leq\frac{1}{x}\]
+
+\vspace{10pt}
+
+And since $\lim_{x\to\infty}\frac{-1}{x}=\lim_{x\to\infty}\frac{1}{x}=0$, we can deduce that $\lim_{x\to\infty}\frac{\sin x}{x}=0$. Similarly, $\lim_{x\to\infty}\frac{\cos x}{x}=0$.
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\displaystyle\lim_{x\to\infty}\frac{3x^2-x+2}{5x^2+3x+15}$
+
+\[\lim_{x\to\infty}\frac{3x^2-x+2}{5x^2+3x+15}=\lim_{x\to\infty}\frac{3-\frac{1}{x}+\frac{2}{x^2}}{5+\frac{3}{x}+\frac{15}{x^2}}=\frac{3}{5}\]
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to\infty}\frac{x^3}{\sinh x}$
+
+\[\lim_{x\to\infty}\frac{x^3}{\sinh x}\overset{3\times L'H}{=\joinrel=\joinrel=\joinrel=\joinrel=}\frac{6}{\infty}=0\]
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to0}\frac{\arcsin x}{\sinh x}$
+
+\[\lim_{x\to0}\frac{\arcsin x}{\sinh x}=\frac{\left(\frac{1}{\sqrt{1-x^2}}\right)}{\cosh x}=1\]
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to\infty}\frac{\arcsin x}{\sinh x}$
+
+\[\lim_{x\to\infty}\frac{\arcsin x}{\sinh x}\overset{|\arcsin x|\leq\pi/2}{\underset{\sinh x\to\infty}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\left(\frac{-\pi/2}{\sinh x}\leq\frac{\arcsin x}{\sinh x}\leq\frac{\pi/2}{\sinh x}\right)\]
+
+\vspace{10pt}
+
+Therefore, by the Sandwich Theorem, $\lim_{x\to\infty}\frac{\arcsin x}{\sinh x}=0$
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to0^+}(\sin x)^x$
+
+\vspace{10pt}
+
+Recall: $a^0=1\quad0^A=0$
+
+\vspace{10pt}
+
+Definition of continuity: $\lim F(x)=F(\lim x)$
+
+\begin{align*}
+\ln L&=\lim_{x\to0^+}x\ln\sin x\\
+&=0\cdot\infty\\
+\mbox{We choose }\ln L&\overset{L'H}{=\joinrel=\joinrel=}\lim_{x\to0^+}\frac{\frac{1}{\sin x}\cdot\cos x}{-1/x^2}\\
+\multicolumn{2}{l}{\mbox{because we didn't want to differentiate the reciprocal of the logarithm.}}\\
+&=-\lim_{x\to0^+}\left(\frac{\cos x}{\sin x}\div\frac{1}{x^2}\right)\\
+&=-\lim_{x\to0^+}\cos x\cdot\frac{x^2}{\sin x}\\
+&=-\lim_{x\to0^+}\cos x\cdot\lim_{x\to0^+}\frac{x}{\sin x}\cdot\lim_{x\to0^+}x\\
+&=-1\cdot-1\cdot0=0\\
+\ln L&=0\\
+L&=1
+\end{align*}
+
+\newpage
+
+{\bf{}EXAMPLE} $\displaystyle\lim_{x\to0}xe^{1/x}=0\cdot\infty$
+
+\begin{align*}
+\lim_{x\to0^+}xe^{1/x}&=\lim_{x\to0}\frac{e^{1/x}}{1/x}\\
+&=(1/x=t)\\
+&=\lim_{t\to\infty}\frac{e^t}{t}\overset{L'H}{=\joinrel=\joinrel=}\lim_{x\to0}\frac{e^t}{1}\\
+&=\infty
+\end{align*}
+
+\vspace{10pt}
+
+If two functions approach the same value (at the same rate) when a limit is applied, they are called equivalent infinitesimals. For example, $\sin x$ and $x$ satisfy this property, hence their limiting ratio of 1 as $x\to0$.
+
+\vspace{10pt}
+
+If $\lim_{x\to a}\alpha(x)=0$ and $\lim_{x\to a}\beta(x)=0$, and$\lim_{x\to a}\frac{\alpha(x)}{\beta(x)}=1$, then $\alpha(x)$ and $\beta(x)$ are called "equivalent infinitesimals."  We can write $\alpha\sim\beta$, or we could also use another symbol which looks like an equals sign where the lines are curved inwards - I just can't find the command for it.
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to0}\frac{\sin^23x}{\tan^2(\sin x)}$
+
+\begin{align*}
+\lim_{x\to0}\frac{\sin^23x}{\tan^2(\sin x)}&=\lim_{x\to0}\frac{\sin^23x}{(3x)^2}\cdot(3x)^2\cdot\frac{1}{\tan^2(\sin x)}
+\end{align*}
+
+\vspace{10pt}
+
+To solve this, we use the property of equivalent infinitesimals that they can replace each other in products under a limit. I am having trouble understanding my note because I wrote messily, so I will send you an updated version of this when I have it figured out. The answer is 9/25.
+
+\vspace{10pt}
+
+{\bf{}HOMEWORK} Evaluate $\displaystyle\lim_{x\to0}\frac{\sinh3x\cdot\tan^2x}{\sin6x\cdot\arctan2x\cdot\tanh x}$
+
+\[t\to0\Rightarrow\sinh t\sim\sin t\sim\tan(t)\sim\arctan(t)\sim\mbox{arctanh }(t)\sim t\]
+
+
+
+
+\end{document}

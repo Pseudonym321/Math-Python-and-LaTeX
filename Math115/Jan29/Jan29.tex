@@ -1,0 +1,206 @@
+\documentclass{article}
+
+%other packages
+\usepackage[a4paper]{geometry}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\setlength\parindent{0pt}
+\usepackage{enumitem}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{polynom}
+\def\scaleint#1{\vcenter{\hbox{\scaleto[3ex]{\displaystyle\int}{#1}}}}
+\usepackage{array}
+\newcolumntype{C}{>{{}}c<{{}}} % for '+' and '-' symbols
+\newcolumntype{R}{>{\displaystyle}r} % automatic display-style math mode 
+\usepackage{tabularray}
+\usepackage{dcolumn,tabularx,booktabs}
+\usepackage[most]{tcolorbox}
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{autobreak}
+
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    trig format=deg,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{document}
+
+Math 115 - Week 5, Class 12 - 29 Jan 2024
+\hrule
+
+\vspace{10pt}
+
+Dr. Solomonovich says we need to be able to derive the inverse hypewrbolic cosine and tangent functions.
+
+\vspace{10pt}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+scale=2,
+standard,
+xmin=-3, xmax=3,
+ymin=-3, ymax=3,
+xtick={\empty}, ytick={\empty},
+samples=200]
+\addplot[domain=0:2] {cosh(x)} node[pos=0.8,right] {$\cosh x,\ x\geq0$};
+\addplot[dashed,domain=-2:0] {cosh(x)};
+\addplot[domain=1:4] {ln(x + sqrt(x^2-1))} node[pos=0.7,above=10pt]{$\ln(x+\sqrt{x^2-1})$};
+\addplot[dashed,domain=1:4] {-ln(x + sqrt(x^2-1))};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+{\bf{}EXAMPLE} Evaluate $\mbox{arctanh}\frac{1}{3}$
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+scale=2,
+standard,
+xmin=-2, xmax=2,
+ymin=-1.2, ymax=1.2,
+xtick={\empty}, ytick={\empty},
+samples=200]
+\addplot[domain=-3:3] {(e^x-e^(-x))/(e^x+e^(-x))} node[pos=0.8, above=10pt] {$\tanh x$};
+\draw[dashed] (-3,1) -- (3,1);
+\draw[dashed] (-3,-1) -- (3,-1);
+\fill[] (0,1) circle [y radius=0.04, x radius=0.04*2/1.2];
+\fill[] (0,-1) circle [y radius=0.04, x radius=0.04*2/1.2];
+\node[above left=10pt] at (0,1) {$1$};
+\node[below left=10pt] at (0,-1) {$-1$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\vspace{10pt}
+
+\begin{align*}
+\tanh x&=\frac{\sinh x}{\cosh x}\\
+&=\frac{e^x-e^{-x}}{e^x+e^{-x}}=\frac{1}{3}\\
+&=\frac{e^{2x}-1}{e^{2x}+1}=\frac{1}{3}\\
+\Rightarrow0<t&=e^{2x}\\
+\frac{t-1}{t+1}&=\frac{1}{3}\\
+3t-3&=t+1\\
+t&=2\\
+\therefore x&=\frac{1}{2}\ln2=\ln\sqrt{2}
+\end{align*}
+
+\newpage
+
+{\bf{}EXAMPLE} $\displaystyle\int\frac{\sinh x}{4+\cosh^2x}\ dx$
+
+\begin{align*}
+\int\frac{\sinh x}{4+\cosh^2x}&=\left(\begin{array}{l}
+\sinh x\ dx=d\ \cosh x\\
+\cosh x=t\end{array}\right)\\
+&=\int\frac{1}{4+t^2}\ dt\\
+&=\frac{1}{2}\arctan\frac{t}{2}+C\\
+&=\frac{1}{2}\arctan(0.5\cosh x)+C
+\end{align*}
+
+\vspace{10pt}
+
+Dr. Solomonovich recommends we study chapter 6.7 1-22, 23, 30-47.
+
+\vspace{10pt}
+
+We then moved onto the topic of limits which approach indeterminant forms of the types ``$\frac{0}{0}$" and ``$\frac{\infty}{\infty}$"
+
+\vspace{10pt}
+
+These limits are solved using $L'Hospital's$ Rule. This rule says that if you take a limit and it approaches an ``indeterminant form," that you can differentiate both the numerator and the denominator and take the same limit.
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Now we have a more powerful tool to solve the problem in Calc 1 where we used geometry to prove $\displaystyle\lim_{x\to0}\frac{\sin x}{x}=0$
+
+\vspace{10pt}
+
+And having identified the removable discontinuity, we can write $f(x)=\left\{\begin{array}{c}\frac{\sin x}{x};\ x\neq0\\1;\ x=0\end{array}\right.$
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to\infty}\frac{x^2-x+1}{x^3+2}$
+
+\begin{align*}
+\lim_{x\to\infty}\frac{x^2-x+1}{x^3+2}&=\lim_{x\to\infty}\frac{\frac{1}{x}-\frac{1}{x^2}+\frac{1}{x^3}}{1+\frac{2}{x^3}}=\frac{0}{1}=0
+\end{align*}
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\displaystyle\lim_{x\to\infty}(\sqrt{x}-\sqrt{x-1})\Rightarrow\infty-\infty$
+
+\begin{align*}
+\lim_{x\to\infty}(\sqrt{x}-\sqrt{x-1})\cdot\frac{\sqrt{x}+\sqrt{x-1}}{\sqrt{x}+\sqrt{x-1}}&=\frac{1}{\sqrt{x}+\sqrt{x-1}}=\frac{1}{\infty}=0
+\end{align*}
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to0}xe^{1/x}=0\cdot\infty$
+
+\begin{align*}
+\lim_{x\to0}\frac{e^{1/x}}{1/x}&=\left(\begin{array}{c}\frac{1}{x}=t\\t\to\infty\end{array}\right)\\
+&=\lim_{t\to+\infty}\frac{e^t}{t}\\
+&\overset{L'H}{=\joinrel=\joinrel=}\lim_{t\to+\infty}\frac{e^t}{1}=\infty
+\end{align*}
+
+\vspace{10pt}
+
+{\bf{}THEOREM}
+
+\vspace{5pt}
+
+If $f(x)$ and $g(x)$ are differentiable ``near" (which is actually a rigorously defined term) $a$, and $\lim_{x\to a}f(x)=\lim_{x\to a}g(x)=\mbox{0 or }\pm\infty$, and $\lim_{x\to a}\left(\frac{f^\prime}{g^\prime}\right)(x)=L$ exists,
+
+\vspace{10pt}
+
+Then: $\lim_{x\to a}\left(\frac{f}{g}\right)(x)=\lim_{x\to a}\left(\frac{f^\prime}{g^\prime}\right)(x)\mbox{ where }L\mbox{ can be }\pm\infty$
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Evaluate $\displaystyle\lim_{x\to0}\frac{\sinh3x}{\tanh2x}$
+
+\begin{align*}
+\lim_{x\to0}\frac{\sinh3x}{\tanh2x}&=\lim_{x\to0}\frac{3\cosh3x}{\frac{2}{\cosh^22x}}=\frac{3\cdot1}{2\cdot1}=\frac{3}{2}\\
+\multicolumn{2}{l}{Recall that we d/dx tanh with quotient rule}
+\end{align*}
+
+
+
+\end{document}
