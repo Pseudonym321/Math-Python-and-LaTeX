@@ -1,0 +1,225 @@
+\documentclass{article}
+
+%other packages
+\usepackage[a4paper]{geometry}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\setlength\parindent{0pt}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{polynom}
+\def\scaleint#1{\vcenter{\hbox{\scaleto[3ex]{\displaystyle\int}{#1}}}}
+\usepackage{array}
+\newcolumntype{C}{>{{}}c<{{}}} % for '+' and '-' symbols
+\newcolumntype{R}{>{\displaystyle}r} % automatic display-style math mode 
+\usepackage{tabularray}
+\usepackage{dcolumn,tabularx,booktabs}
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{autobreak}
+
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    trig format=rad,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{document}
+
+Math 115 - Week 2, Class 3 - 8 Jan 2024
+\hrule
+
+\vspace{10pt}
+
+Recall that an inverse function is continuous "if and only if" the original function is one-to-one and continuous.
+
+\begin{center}
+$\boxed{\begin{aligned}
+f&\textnormal{ is }1\to1\\
+f&\textnormal{ is continuous}
+\end{aligned}}
+\Rightarrow
+\boxed{\begin{aligned}
+f^{-1}\textnormal{ is continuous}
+\end{aligned}}$
+\end{center}
+
+Going back to the first example from last class, recall the definition of continuity: A function, $f(x)$, is continuous at a number $a$ "if and only if" $\lim_{x\to a}f(x)=f(a)$, and $f(x)$ is continuous on an interval if it is continuous for every value in that interval.
+
+\vspace{10pt}
+
+Transferring this logic to our current situation, we can demonstrate that $f^{-1}$ is discontinuous when $x=a$, because $\lim_{x\to a^-}f^{-1}(x)\neq\lim_{x\to a^+}f^{-1}(x)$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+standard,
+xmin=0, xmax=2,
+ymin=0, ymax=2,
+xtick={1}, ytick={\empty},
+xticklabels={$a$},
+xlabel={$x$}, ylabel={$y$}]
+\addplot[domain=-1:1,samples=1000] {-(1-x)^(1/2)+0.5};
+\fill[] (1,0.5) circle [radius=0.025];
+\draw[] (1,0.47) -- (1,1.5);
+\draw[decoration={brace,raise=3pt,mirror},decorate] (1,0.5) -- (1,1.5) node[pos=0.5, right=4pt]{Jump Discontinuity};
+\fill[] (1,1.5) circle [radius=0.025];
+\addplot[domain=1:3,samples=300] {(x-1)^(1/2)+1.5};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Now, on to the topic of differentiating inverse functions.
+
+\vspace{10pt}
+
+Suppose $f(x)$ is differentiable. $\Rightarrow f^\prime(x)=\frac{dy}{dx}$
+
+\begin{center}
+\begin{tabular}{|c|}
+\hline\\
+$\displaystyle(f^{-1})^\prime(y)=\frac{dx}{dy}=\frac{1}{\frac{dy}{dx}}=\frac{1}{f^\prime(x)}$\\[2em]
+\hline
+\end{tabular}
+\end{center}
+
+{\bf{}EXAMPLE} Find $(f^{-1})^\prime(y)$ s.t. $f(x)=\sqrt{x}$
+
+\begin{align*}
+(f^{-1})^\prime(y)&=\frac{1}{f^\prime(x)}\\
+&=\frac{1}{\frac{1}{2\sqrt{x}}}\\
+&=2\sqrt{x}\big|_{y=\sqrt{x}}\\
+&=2y
+\end{align*}
+
+It is worth mentioning that if $f(x)=y(x)$, then $f^{-1}(x)=x(y)$.
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} Find $(f^{-1})^\prime(a)$ such that $a=2$ and $f(x)=x^3+3\sin x+2\cos x$
+
+\vspace{10pt}
+
+This is a two-step question. First we identify the general formula for the derivative of $f^{-1}$, then we substitute in the input value for which $f$ evaluates to two.
+
+\vspace{10pt}
+
+First of all we solve for $1/f^\prime(x)=\frac{dx}{dy}$ generally.
+
+\[(f^{-1})^\prime(a)=\frac{1}{f^\prime(x)}=\frac{1}{3x^2+3\cos x-2\sin x}\]
+
+Now we find the values of $x$ for which the equation, $f(x)=2$, is satisfied. According to Dr. Solomonovich, this particular function is impossible to solve for $x$, for reasons involving its composition of algebraic and transcendental functions. So, in this circumstance, we need to guess and check. And, as it turns out,
+
+\[x_{y=2}=0\]
+
+So,
+
+\[\frac{1}{3x^2+3\cos x-2\sin x}\big|_{x=0}=\frac{1}{3}\]
+
+Now we will proceed to the section on exponential properties.
+
+\begin{center}
+\begin{tabular}{|lll|}
+\hline&&\\
+$\begin{aligned}
+a^n&=a_1\cdot a_2\cdots a_n\quad n\geq1\\
+a^m\cdot a^n&=a_1\cdots a_m\cdot a_1\cdots a_n=a^{m+n}\\
+\frac{a^k}{a^m}&=\frac{a_1\cdots a_k}{a_1\cdots a_m}=a^{k-m}
+\end{aligned}$
+&
+$\begin{aligned}
+\frac{a^k}{a^k}&=1=a^0\\
+a^{-1}&=\frac{1}{a}\\
+(a^n)^k&=a_1^n\cdot a_2^n\cdots a_k^n=a^{nk}
+\end{aligned}$
+&
+$\begin{aligned}
+\sqrt[n]{a}&=a^{\frac{1}{n}}\\
+\sqrt[n]{a^m}&=a^\frac{m}{n}=(\sqrt[n]{a})^m\\
+&
+\end{aligned}$\\[3.5em]
+\hline
+\end{tabular}
+\end{center}
+
+For exponential functions, $\{x,y\in\mathbb{R}|y=a^x,\ a>0\}$ is read "$x$ and $y$ are elements of the real numbers such that $y$ is $x$ to the base $a$ and $a$ is greater than zero."
+
+\begin{center}
+\begin{tabular}{|ll|}
+\hline&\\
+$\begin{aligned}[t]
+x&\to\infty\\
+x&\to-\infty
+\end{aligned}$
+&
+$\begin{aligned}[t]
+a^x&\to\infty\\
+a^x&\to0
+\end{aligned}$\\[1em]
+\hline
+\end{tabular}
+\end{center}
+
+When $0<a<1$, $a^x\to0+$ when $x\to\infty$, and $a^x\to\infty$ when $x\to-\infty$.
+
+\vspace{10pt}
+
+Now we will \textit{attempt} to differentiate the exponential function.
+
+\vspace{10pt}
+
+What we will discover is that its derivative is itself, multiplied by its slope when $x=0$. So, if we set the base of the exponential function such that it's slope when $x=0$ is 1, then we will have obtained a function which is it's own derivative. The specific constant which facilitates this property is called Euler's Constant (pronounced like our hockey team "Oilers"), and we will have fun discovering its derivation in the days ahead.
+
+\vspace{10pt}
+
+\begin{align*}
+f(x)&=a^x\\
+\frac{d}{dx}[a^x]&=\lim_{\Delta x\to0}\frac{a^{x+\Delta x}-a^x}{\Delta x}\\
+&=a^x\lim_{\Delta x\to0}\frac{a^{\Delta x}-1}{\Delta x}\\
+f^\prime(0)&=a^0\cdot\lim_{\Delta x\to0}\frac{a^{\Delta x}-1}{\Delta x}\\
+&=\lim_{\Delta x\to0}\frac{a^{\Delta x}-1}{\Delta x}\\
+\textnormal{So, }f^\prime(x)&=a^xf^\prime(0)
+\end{align*}
+
+\begin{center}
+\begin{tabular}{|l|}
+\hline\\
+Euler's Constant, $e$, is the number such that\\[1em]
+\multicolumn{1}{|c|}{$\displaystyle\lim_{\Delta x\to0}\frac{e^{\Delta x}-1}{\Delta x}=1$}\\[1.5em]
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\end{document}
