@@ -1,0 +1,62 @@
+\documentclass[a4]{article}
+
+%other packages
+\usepackage[a4paper, total={7.5in, 10.5in}]{geometry}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\setlength\parindent{0pt}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{autobreak}
+
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\begin{document}
+
+\allowdisplaybreaks
+\centerline{\bf{}Stewart, Outline \#7.2: Trigonometric Integrals}
+{\renewcommand{\arraystretch}{2}
+\begin{longtable}{|p{5cm}|p{7.78cm}|p{5cm}|}
+\hline
+    \rowcolor{lightgray}
+    {\bf{}Outcome, you should be able to...} & {\bf{Show that you are able to do this.}} & {\bf{How will you not forget what you have learned?}}\\
+\hline
+State the strategy for evaluating $\int\sin^mx\cos^nx\ dx$ & 
+\begin{enumerate}[label=(\alph*)]
+\item If the power of cosine is odd, save one cosine factor and express rest i.t.o sine.
+\item If the power of sine is odd, save one sine factor and express rest i.t.o cosine.
+\item If the powers of both sine and cosine are even, use the half-angle identities.
+\end{enumerate} & x\\
+\hline
+State the strategy for evaluating $\int\tan^mx\sec^nx\ dx$ & 
+\begin{enumerate}[label=(\alph*)]
+\item If the power of secant is odd, save one $sec^2x$ factor and express rest i.t.o tangent.
+\item If the power of tangent is odd, save one $\sec x\tan x$ factor and express rest i.t.o secant.
+\end{enumerate} & x\\
+\hline
+State the integral of tangent and derive the integral of secant. & $\int\tan x\ dx=\ln|\sec x|+C,\ \int\sec x\ dx=\ln|\sec x+\tan x|+C$ (p. 464) & x\\
+\hline
+State the product formulas. & $\sin x\cos y=\frac{1}{2}[\sin(x+y)+\sin(x-y)],\ \cos x\cos y=\frac{1}{2}[\cos(x+y)+\cos(x-y)],\ \sin x\sin y=\frac{1}{2}[\cos(x-y)-\cos(x+y)]$ & x\\
+\hline
+\end{longtable}
+\end{document}

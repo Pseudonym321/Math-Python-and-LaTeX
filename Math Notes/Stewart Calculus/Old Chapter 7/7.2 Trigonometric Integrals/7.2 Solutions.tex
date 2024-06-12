@@ -1,0 +1,159 @@
+\documentclass[a4]{article}
+
+%other packages
+\usepackage[a4paper, total={7.5in, 10.5in}]{geometry}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\setlength\parindent{0pt}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{autobreak}
+
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\begin{document}
+\begin{enumerate}[label={\bf{}\arabic*}.]
+\item%1
+	$\int\sin^3x\cos^2x\ dx=\int\sin x(1-\cos^2x)\cos^2x\ dx=-\int-\sin x(\cos^2x-\cos^4x)\ dx\overset{u=\cos x}{\underset{du=-\sin x\ dx}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\int u^2-u^4\ du=\frac{1}{3}\cos^3 x-\frac{1}{5}\cos^5x+C$
+
+\item%2
+	$\int\sin^6x\cos^3x\ dx=\int\sin^6x(1-\sin^2x)\cos x\ dx=\int(\sin^6x-\sin^8x)\cos x\ dx\overset{u=\sin x}{\underset{du=\cos x\ dx}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\int u^6-u^8\ du=\frac{1}{7}\sin^7x-\frac{1}{9}\sin^9x+C$
+
+\color{red}\item[\refstepcounter{enumi}\fbox{\number\value{enumi}.}]\color{black}%3
+	$\int_{\pi/2}^{3\pi/4}\sin^5x\cos^3x\ dx=\int_{\pi/2}^{3\pi/4}\sin^5x(1-\sin^2x)\cos x\ dx=\int_{\pi/2}^{3\pi/4}(\sin^5x-\sin^7x)\cos x\ dx\overset{u=\sin x}{\underset{du=\cos x\ dx}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\int_{1}^{1/\sqrt{2}}u^5-u^7\ du=\left.\frac{1}{6}u^6-\frac{1}{8}u^8\right|_1^{1/\sqrt{2}}=[\frac{1}{6}(\frac{1}{\sqrt{2}})^6-\frac{1}{8}(\frac{1}{\sqrt{2}})^8]-[\frac{1}{6}(1)^6-\frac{1}{8}(1)^8]=[\frac{1}{48}-\frac{1}{128}]-[\frac{1}{6}-\frac{1}{8}]=\frac{10}{782}-\frac{1}{24}=\frac{-271}{48\cdot128\cdot12}$
+
+\item%4
+	$\int_0^{\pi/2}\cos^5x\ dx=\int_0^{\pi/2}(1-\sin^2x)^2\cos x\ dx=\int_0^{\pi/2}\cos x-2\sin^2x\cos x+\sin^4x\cos x\ dx\overset{u=\sin x}{\underset{du=\cos x\ dx}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\int_0^1\ du-2\int_0^1u^2\ du+\int_0^1u^4\ du=u|_0^1-\frac{2}{3}u^3|_0^1+\frac{1}{5}u^5|_0^1=1-\frac{2}{3}+\frac{1}{5}=\frac{8}{15}$
+
+\item%5
+	$\int\sin^2(\pi x)\cos^5x\ dx\overset{u=\sin^2(\pi x),\ du=\frac{2}{\pi}\cos x\ dx}{\underset{dv=\cos^5x\ dx,\ v=\frac{1}{6}\sin x}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\frac{1}{6}\sin x\sin^2(\pi x)-\frac{2}{6\pi}\int\sin x\cos x\ dx\overset{u=\sin x}{\underset{du=\cos x\ dx}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\frac{1}{6}\sin x\sin^2(\pi x)-\frac{2}{12\pi}\sin^2x$
+
+\item%6
+	\begin{align*}
+	\int\frac{\sin^3(\sqrt{x})}{\sqrt{x}}\ dx&\overset{u=\sqrt{x}}{\underset{2\sqrt{x}\ du=\ dx}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}2\int\sin^3(u)\ du\\
+	&=2\int\sin(u)\sin^2(u)\ du\\
+	&=2\int\sin(u)(1-\cos^2(u))\ du\\
+	&=2\int\sin(u)\ du-2\int\sin(u)\cos^2(u)\ du\\
+	&\overset{v=cos(u)}{\underset{dv=\sin(u)\ du}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}-2\cos(u)-\int v^2\ dv\\
+	&=-2\cos(u)-\frac{v^3}{3}+C|_{u=\sqrt{x},\ v=\cos(u)}\\
+	&=-2\cos(\sqrt{x})-\frac{\cos^3(\sqrt{x})}{3}+C
+	\end{align*}
+
+\color{red}\item[\refstepcounter{enumi}\fbox{\number\value{enumi}.}]\color{black}%7
+	\begin{align*}
+	\int_0^{\pi/2}\cos^2\theta\ d\theta&=\int_0^{\pi/2}\frac{1}{2}(1+\cos(2\theta))\ d\theta\\
+	&=\frac{\theta}{2}+\frac{1}{4}\sin(2\theta)|_0^{\pi/2}\\
+	&=\frac{\pi}{4}
+	\end{align*}
+
+\item%8
+	\begin{align*}
+	\int_0^{\pi/2}\sin^2(2\theta)\ d\theta&=\int_0^{\pi/2}\frac{1}{2}(1+\cos(4\theta))\ d\theta\\
+	&=\frac{\theta}{2}+\frac{1}{8}\sin(4\theta)\Big|_0^{\pi/2}\\
+	&=\frac{\pi}{4}
+	\end{align*}
+
+\item%9
+	\begin{align*}
+	\int_0^\pi\sin^4(3t)\ dt&=\int_0^\pi(1-\cos(6t))^2\ dt\\
+	&=\int_0^\pi1-2\cos(6t)+\cos^2(6t)\ dt\\
+	&=\int_0^\pi1-2\cos(6t)+(1+\cos(12t))\ dt\\
+	&=2t-\frac{1}{3}\sin(6t)+\frac{1}{12}\sin(12t)\Big|_0^\pi\\
+	&=2\pi
+	\end{align*}
+
+
+\item%10
+	\begin{align*}
+	\int_0^\pi\cos^6\theta\ d\theta&=\int_0^\pi(1+\cos(2\theta))^3\ d\theta\\
+	&=\int_0^\pi1+3\cos(2\theta)+3\cos^2(2\theta)+\cos^3(2\theta)\ d\theta\\
+	&=\int_0^\pi1+2\cos(2\theta)+3(1+\cos(4\theta))+\cos(2\theta)(1-\sin^2(2\theta))\ d\theta\\
+	&=\int_0^\pi4+3\cos(2\theta)+\cos(4\theta)-\cos(2\theta)\sin^2(2\theta)\ d\theta\\
+	&\overset{u=\sin(2\theta)}{\underset{du=2\cos(2\theta)\ d\theta}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}4\theta+\frac{3}{2}\sin(2\theta)+\frac{1}{4}\sin(4\theta)\Big|_0^\pi-\frac{1}{2}\int_0^0 u^2\ du\\
+	&=4\pi
+	\end{align*}
+
+\item%11
+	\begin{align*}
+	\int(1+\cos\theta)^2\ d\theta&=\int1+2\cos\theta+\cos^2\theta\ d\theta\\
+	&=\int2+2\cos\theta+\cos(2\theta)\ d\theta\\
+	&=2\theta+2\sin\theta+\frac{1}{2}\sin(2\theta)+C
+	\end{align*}
+
+\item%12
+	\begin{align*}
+	\int x\cos^2x\ dx&\overset{u=x,\ du=\ dx}{\underset{dv=\cos^2x\ dx,\ v=\frac{x}{2}+\frac{1}{4}\sin(2x)}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\frac{x^2}{2}+\frac{x}{4}\sin(2x)-\int\frac{x}{2}+\frac{1}{4}\sin(2x)\ dx\\
+	&=\frac{x^2}{2}+\frac{x}{4}\sin(2x)-\frac{x^2}{4}-\frac{1}{8}\cos(2x)+C
+	\end{align*}
+
+\color{red}\item[\refstepcounter{enumi}\fbox{\number\value{enumi}.}]\color{black}%13
+	\begin{align*}
+	\int_0^{\pi/2}\sin^2x\cos^2x\ dx&=\int_0^{\pi/2}\frac{1}{4}(1-\cos(2x))(1+\cos(2x))\ dx\\
+	&=\int_0^{\pi/2}\frac{1}{4}-\frac{1}{4}\cos^2(2x)\ dx\\
+	&=\int_0^{\pi/2}\frac{1}{4}\cos(4x)\ dx\\
+	&=\frac{1}{16}\sin(4x)\Big|_0^{\pi/2}\\
+	&=0
+	\end{align*}
+
+\item%14
+	\begin{align*}
+	\int_0^\pi\sin^2t\cos^4t\ dt&=\int_0^\pi(1-\cos(2t))(1+\cos(2t))^2\ dt\\
+	&=\int_0^\pi(1-\cos^2(2t))(1+\cos(2t))\ dt\\
+	&=\int_0^\pi1+\cos(2t)-\cos^2(2t)-\cos^3(2t)\ dt\\
+	&=\int_0^\pi-\cos(4t)+\cos(2t)\sin^2(2t)\ dt\\
+	&\overset{u=\sin(2t)}{\underset{du=2\cos(2t)\ dt}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}-\frac{1}{4}\sin(4t)\Big|_0^\pi+\frac{1}{2}\int_0^0u^2\ du\\
+	&=0
+	\end{align*}
+
+\item%15
+	\begin{align*}
+	\int\frac{\cos^5\alpha}{\sqrt{\sin\alpha}}\ d\alpha&=\int\frac{(1-\sin^2\alpha)^2\cos\alpha}{\sqrt{\sin\alpha}}\ d\alpha\\
+	&=\int\frac{(1-2\sin^2\alpha+\sin^4\alpha)\cos\alpha}{\sqrt{\sin\alpha}}\ d\alpha\\
+	&\overset{u=\sin\alpha}{\underset{du=\cos\alpha\ d\alpha}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\int\frac{1-2u^2+u^4}{\sqrt{u}}\ du\\
+	&=\int u^{-1/2}-2u^{3/2}+u^{7/2}\ du\\
+	&=\frac{u^{1/2}}{\frac{1}{2}}-2\frac{u^{5/2}}{\frac{5}{2}}+\frac{u^{9/2}}{\frac{9}{2}}+C\\
+	&=2\sqrt{\sin\alpha}-\frac{4}{5}\sqrt{\sin^5\alpha}+\frac{2}{9}\sqrt{\sin^9\alpha}+C
+	\end{align*}
+
+\item%16
+	\begin{align*}
+	\int\cos\theta\cos^5(\sin\theta)\ d\theta&\overset{u=\sin\theta}{\underset{du=\cos\theta\ d\theta}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\int\cos^5u\ du\\
+	&=\int(1-\sin^2u)^2\cos u\ du\\
+	&=\int(1-2\sin^2u+\sin^4 u)\cos u\ du\\
+	&\overset{w=\sin u}{\underset{dw=\cos u\ du}{=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=\joinrel=}}\int1-2w^2+w^4\ dw\\
+	&=w-\frac{2}{3}w^3+\frac{1}{5}w^5+C\\
+	&=\sin u-\frac{2}{3}\sin^3u+\frac{1}{5}\sin^5u+C\\
+	&=\sin(\sin\theta)-\frac{2}{3}\sin^3(\sin\theta)+\frac{1}{5}\sin^5(\sin\theta)+C
+	\end{align*}
+
+\item%17
+	\begin{align*}
+	\int\cos^2x\tan^3x\ dx&=\int\frac{\sin^3x}{\cos x}\ dx\\
+	&=
+	\end{align*}
+
+
+
+
+\end{enumerate}
+\end{document}
