@@ -6,7 +6,7 @@ from PyPDF2 import PdfReader, PdfWriter
 import subprocess
 
 # %%
-numiter = 30
+numiter = 24
 
 # %%
 start= r'''
@@ -105,23 +105,6 @@ merged_pdf = os.path.join(output_directory, 'merged_output.pdf') # make this the
 
 # %%
 for i in np.linspace(120,150,numiter):
-    # Create a TeX file for each iteration
-    tex_file = 'file_{}.tex'.format(1)
-    tikz_code = make_tikz_code(i)
-    with open(tex_file, 'w') as f:
-        f.write(tikz_code)
-
-    # Compile the TeX file to PDF
-    compile_tex_to_pdf(tex_file)
-
-    # Append the generated PDF to the merged PDF
-    temp_pdf = os.path.join(output_directory, 'merged_output_temp.pdf')
-    append_pdfs(merged_pdf, 'file_{}.pdf'.format(1), temp_pdf)
-
-    # Rename the temporary merged PDF to the original merged PDF
-    shutil.move(temp_pdf, merged_pdf)
-
-for i in np.linspace(150,120,numiter):
     # Create a TeX file for each iteration
     tex_file = 'file_{}.tex'.format(1)
     tikz_code = make_tikz_code(i)
