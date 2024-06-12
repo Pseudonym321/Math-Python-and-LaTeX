@@ -1,0 +1,194 @@
+\documentclass{article}
+
+%other packages
+\usepackage[a4paper]{geometry}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\setlength\parindent{0pt}
+\usepackage{enumitem}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{polynom}
+\def\scaleint#1{\vcenter{\hbox{\scaleto[3ex]{\displaystyle\int}{#1}}}}
+\usepackage{array}
+\newcolumntype{C}{>{{}}c<{{}}} % for '+' and '-' symbols
+\newcolumntype{R}{>{\displaystyle}r} % automatic display-style math mode 
+\usepackage{tabularray}
+\usepackage{dcolumn,tabularx,booktabs}
+\usepackage[most]{tcolorbox}
+%\graphicspath{ {C:/Users/twill/OneDrive/Desktop/Eliason/Diagrams} }
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{autobreak}
+
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    trig format=deg,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{document}
+
+Math 115, 15 March 2024
+\hrule
+
+\vspace{10pt}
+
+Learning Outcome: determine if $\int$ is convergent and evaluate it if it is.
+
+\vspace{10pt}
+
+If a function $f(x)$ is less than or equal to another function $g(x)$ for all $x\in\mathbb{R}$ such that $x\geq M$, then the following is true;
+
+\begin{center}
+\begin{enumerate}[label=(\alph*)]
+\item $\displaystyle\int_M^\infty f(x)\ dx\mbox{ convg.}\implies\int_M^\infty g(x)\ dx\mbox{ convg.}$
+\item $\displaystyle\int_M^\infty g(x)\ dx\mbox{ diverg.}\implies\int_M^\infty g(x)\ dx\mbox{ diverg.}$
+\end{enumerate}
+\end{center}
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\displaystyle\int_{10}^\infty\frac{1}{x\ln^2x}\ dx$
+
+\begin{align*}
+\int_{10}^\infty\frac{1}{x\ln^2x}\ dx&=(\ln x=u,\ du=1/x\ dx)\\
+&=\int_{\ln10}^\infty\frac{1}{u^2}\ du\mbox{ convg. by p-test}
+\end{align*}
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\displaystyle\int_{10}^\infty\frac{1+\sin^23x+\arctan x}{x\ln^2x}\ dx$
+
+\[\mbox{numerator }<1+1+\pi/2<4\]
+
+So,
+
+\[\int_{10}^\infty\frac{1+\sin^23x+\arctan x}{x\ln^2x}\ dx<\int_{10}^\infty\frac{4}{x\ln^2x}\ dx\mbox{ convg. by p-test}\]
+
+Therefore, our original integral is convergent by comparison.
+
+\vspace{10pt}
+
+O, o - notation:
+
+\[f(x)=O(g(x))\iff\exists c:f(x)\leq cg(x)\]
+
+A function is a big O of another function if it is strictly less than or equal to a scalar multiple of another function.
+
+\[f(x)=O(g(x))\land\int_a^\infty g(x)\ dx\mbox{ convg.}\implies\int_a^\infty f(x)\ dx\mbox{ convg.}\]
+
+If a function is big O of another function and that function is convergent on the domain, then our original function is also. Similarly;
+
+\[f(x)=O(g(x))\land\int_a^\infty f(x)\ dx\mbox{ diverg.}\implies\int_a^\infty g(x)\ dx\mbox{ diverg.}\]
+
+\newpage
+
+$f(x)\sim g(x)$ when $x\to\infty$ if $f(x)=O(g(x)$ and $g(x)=O(f(x))$
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\displaystyle5g(x)<f(x)<9g(x)$
+
+\vspace{10pt}
+
+If $f(x)\sim g(x)$, then they converg or diverge simultaneously. This implies
+
+\[\lim_{x\to\infty}\frac{f(x)}{g(x)}=c\]
+
+and
+
+\[\left|\frac{f(x)}{g(x)}-c\right|<\varepsilon\implies(c-\varepsilon)g(x)<f(x)<(c+\varepsilon)g(x)\]
+
+or, "$f(x)\sim g(x)$ when $x\to\infty$."
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $I_1=\int_1^\infty\frac{2+e^{-x}}{x}\ dx>I_2=\int_1^\infty\frac{2}{x}\ dx\mbox{ diverg.}\therefore I_1\mbox{ diverg. too}$
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $I_1=\int_1^\infty\frac{2-e^{-x}}{x}\ dx$
+
+\[\lim_{x\to]infty}\left(\frac{2-e^{-x}}{x}\div\frac{2}{x}\right)=\lim_{x\to\infty}\frac{2-e^{-x}}{2}=1\]
+
+so,
+
+\[\int_1^\infty\frac{2-e^{-x}}{x}\ dx\mbox{ and }\int_1^\infty\frac{2}{x}\ dx\mbox{ are similar, i.e. converg or diverge simultaneously}\]
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\int_0^\infty\frac{\arctan x}{2+e^x}\ dx$
+
+\[\frac{-\pi/2}{2+e^x}<\frac{\arctan x}{e^x+2}<\frac{\pi/2}{2+e^x}<\frac{\pi}{2+e^x}\]
+
+\[\implies\int_0^\infty\frac{\pi}{2}\frac{1}{e^x}\ dx=\lim_{b\to\infty}\frac{\pi}{2}(-e^{-x})\big|_0^b=\frac{\pi}{2}\therefore\mbox{ converg.}\]
+
+\vspace{10pt}
+
+{\bf{}MODIFICATION} $\int_0^\infty\frac{\arctan x}{e^x-x^2-3}\ dx$
+
+\vspace{10pt}
+
+While it is not generally true that
+
+\[\frac{\arctan x}{e^x-x^2-3}<\frac{\pi}{2e^x}\]
+
+but it is the truth that
+
+\[\lim_{x\to\infty}\frac{\arctan x}{e^x-x^2-3}\div\frac{1}{e^x}=\frac{\pi}{2}\]
+
+since the terms are equivalent, or "similar"
+
+\newpage
+
+{\bf{}EXAMPLE} $\int_1^\infty\frac{x\sqrt{x}-2x+1}{x^3+2x^2+x+5}\ dx$
+
+\[\mbox{inegrand }<\frac{x\sqrt{x}}{x^3}=x^{-3/2}\]
+
+\[\int x^{-3/2}\ dx\mbox{ convg.}\therefore\int\mbox{ convg.}\]
+
+\vspace{10pt}
+
+{\bf{}MODIFICATION} $\int_{10}^\infty\frac{\arctan x}{x^3-2x^2-5x-6}\ dx$
+
+\[\lim_{x\to\infty}\mbox{ integrand}\div\mbox{ dominating terms}=1\]
+
+\vspace{10pt}
+
+Inproper $\int$ with a singularity (discontinuity);
+
+\[f(x):x\in[a,b)\cup(b,c]\to\mathbb{R}\implies\int_a^cf(x)\ dx=\lim_{n\to b^-}\int_a^nf(x)+\lim_{n\to b^+}\int_n^cf(x)\ dx\]
+
+
+
+\end{document}
