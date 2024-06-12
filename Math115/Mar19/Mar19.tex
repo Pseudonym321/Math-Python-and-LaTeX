@@ -1,0 +1,115 @@
+\documentclass{article}
+
+%other packages
+\usepackage[a4paper]{geometry}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\setlength\parindent{0pt}
+\usepackage{enumitem}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{polynom}
+\def\scaleint#1{\vcenter{\hbox{\scaleto[3ex]{\displaystyle\int}{#1}}}}
+\usepackage{array}
+\newcolumntype{C}{>{{}}c<{{}}} % for '+' and '-' symbols
+\newcolumntype{R}{>{\displaystyle}r} % automatic display-style math mode 
+\usepackage{tabularray}
+\usepackage{dcolumn,tabularx,booktabs}
+\usepackage[most]{tcolorbox}
+%\graphicspath{ {C:/Users/twill/OneDrive/Desktop/Eliason/Diagrams} }
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{autobreak}
+
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    trig format=deg,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{document}
+
+Math 115, 19 March 2024
+\hrule
+
+\vspace{10pt}
+
+\begin{equation}\boxed{\int_0^a\frac{1}{x^P}\ dx\begin{aligned}\mbox{convg.}\ p<1\\\mbox{divg.}\ p\geq1\end{aligned}}\end{equation}
+
+\begin{equation}\boxed{\int_1^\infty\frac{1}{x^P}\ dx\begin{aligned}\mbox{convg.}\ p>1\\\mbox{divg.}\ p\leq1\end{aligned}}\end{equation}
+
+For $f(x)\leq g(x)$, where $0<x<m$, if $I_f=\int_0^1f(x)\ dx\quad I_g=\int_0^1g(x)$, then; (a) if $I_g$ convg., then $I_f$ is too, and (b) if $I_g$ digv., then $I_f$ is too.
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\int_0^1\frac{4+\sin x}{x\sqrt{x}}\ dx\leq\int_0^1\frac{2}{x^{3/2}}\ dx$
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\int_0^1\frac{\sin x}{x\sqrt x}\ dx$
+
+\[\sin x\sim x\implies\frac{\sin x}{x\sqrt{x}}\sim\frac{1}{\sqrt{x}}\]
+
+\[\lim_{x\to0^+}\left(\frac{\sin x}{x\sqrt{x}}\div\frac{1}{\sqrt{x}}\right)=1\]
+
+{\bf{}EXAMPLE} $\int_a^\infty\frac{x\arctan x}{(1+x^2)^2}\ dx$
+
+\vspace{10pt}
+
+$\arctan x\leq\pi/2$ as $x\to\infty$.
+
+\begin{align*}
+\int_a^\infty\frac{x\arctan x}{(1+x^2)^2}\ dx&\leq\frac{\pi}{2}\int_a^\infty\frac{x}{(1+x^2)^2}\ dx\\
+&=\frac{\pi}{2}\int_0^\infty\frac{0.5\ d(1+x^2)}{(1+x^2)^2}\\
+&\Rightarrow\mbox{ convg.}
+\end{align*}
+
+Knowing that it is convergent, we can evaluate it with integration by parts; $u=\arctan x$
+
+\vspace{10pt}
+
+{\bf{}EXAMPLE} $\int_{\pi/2}^\pi\frac{1}{\sin x}\ dx$
+
+\begin{align*}
+\int_{\pi/2}^\pi\frac{1}{\sin x}\ dx&=\left(\begin{aligned}x=\pi-t&\quad x=\pi\implies t=0\\dx=-dt&\quad x=\frac{\pi}{2}\implies t=\frac{\pi}{2}\end{aligned}\right)\\
+&=-\int_\frac{\pi}{2}^\pi\frac{1}{\sin t}\ dt=\int_0^\frac{\pi}{2}\frac{1}{\sin t}\ dt\\
+\frac{1}{\sin t}&\sim\frac{1}{t}\mbox{ when }t\to0^+\\
+&\therefore\mbox{ divergent by comparison.}
+\end{align*}
+
+
+
+
+
+
+
+\end{document}
