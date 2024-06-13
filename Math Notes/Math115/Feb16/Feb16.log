@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.6.8)  11 JUN 2024 15:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.6.13)  13 JUN 2024 02:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1212,8 +1212,7 @@ ikzlibrarydecorations.softclip.code.tex
 (C:\Users\twill\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/pgfcontrib\p
 gflibraryfillbetween.code.tex)))
 (C:\Users\twill\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlib
-rarypgfplots.decorations.softclip.code.tex))
-No file Feb16.aux.
+rarypgfplots.decorations.softclip.code.tex)) (Feb16.aux)
 \openout1 = `Feb16.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
@@ -1230,6 +1229,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
 LaTeX Font Info:    ... okay on input line 59.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
 LaTeX Font Info:    ... okay on input line 59.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1334,10 +1334,10 @@ L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 35979 strings out of 473938
- 925865 string characters out of 5727392
+ 35982 strings out of 473938
+ 925905 string characters out of 5727391
  1945893 words of memory out of 5000000
- 58107 multiletter control sequences out of 15000+600000
+ 58108 multiletter control sequences out of 15000+600000
  560677 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,15n,107p,1178b,944s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1353,7 +1353,7 @@ ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/t
 will/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:
 /Users/twill/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb>
-Output written on Feb16.pdf (6 pages, 138960 bytes).
+Output written on Feb16.pdf (6 pages, 139267 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

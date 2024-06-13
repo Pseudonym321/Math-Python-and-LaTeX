@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.6.8)  11 JUN 2024 16:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.6.13)  13 JUN 2024 03:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1187,8 +1187,7 @@ ikzlibrarydecorations.softclip.code.tex
 (C:\Users\twill\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/pgfcontrib\p
 gflibraryfillbetween.code.tex)))
 (C:\Users\twill\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlib
-rarypgfplots.decorations.softclip.code.tex))
-No file Jan8.aux.
+rarypgfplots.decorations.softclip.code.tex)) (Jan8.aux)
 \openout1 = `Jan8.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
@@ -1205,6 +1204,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
 LaTeX Font Info:    ... okay on input line 57.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
 LaTeX Font Info:    ... okay on input line 57.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1300,10 +1300,10 @@ L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 34697 strings out of 473938
- 891522 string characters out of 5727392
+ 34700 strings out of 473938
+ 891555 string characters out of 5727391
  1947893 words of memory out of 5000000
- 56845 multiletter control sequences out of 15000+600000
+ 56846 multiletter control sequences out of 15000+600000
  560422 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,19n,107p,1177b,2107s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1322,7 +1322,7 @@ ill/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
 cm/cmsy7.pfb><C:/Users/twill/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmti10.pfb><C:/Users/twill/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on Jan8.pdf (3 pages, 158437 bytes).
+Output written on Jan8.pdf (3 pages, 158628 bytes).
 PDF statistics:
  104 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
