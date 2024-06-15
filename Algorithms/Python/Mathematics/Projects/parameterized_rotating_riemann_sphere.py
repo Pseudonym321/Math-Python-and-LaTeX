@@ -66,7 +66,7 @@ end = r'''
 \path[tdplot_screen_coords,spath/save=pathname] (0,0) circle [radius=0.045];
 \path[fill,spath/use={pathname, transform={shift={(\myscale*0,\myscale*0,\myscale*1)}}}];
 %%% XY-PLANE CIRCLE %%%
-\tdplotsetrotatedcoords{0+\n}{0}{0}
+\tdplotsetrotatedcoords{0}{0}{0}
 \draw[tdplot_rotated_coords,densely dashed,thin] (\azimuth:1) arc [start angle=\azimuth, end angle={\azimuth+180}, radius=1];
 \draw[tdplot_rotated_coords] (\azimuth:1) arc [start angle=\azimuth, end angle={\azimuth-180}, radius=1];
 
@@ -134,6 +134,7 @@ def compile_tex_to_pdf(tex_file):
 # %%
 # Function to append two PDF files
 gs_path = r"C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
+gs_path= r"gswin64c"
 def append_pdfs(pdf1, pdf2, output_pdf):
     subprocess.run([gs_path, '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + output_pdf, os.path.abspath(pdf1), os.path.abspath(pdf2)])
 
