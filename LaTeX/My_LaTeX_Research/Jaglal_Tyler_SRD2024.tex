@@ -1,0 +1,622 @@
+\documentclass[24pt]{beamer}
+\mode<presentation>
+\title{{\bf{}Use Of \LaTeX\  And Other Software For Illustrating Mathematical Concepts}}
+\author{Author: T. Jaglal\\[1ex] \texttt{jaglalt@mymacewan.ca}\\[2ex] Advisor: Dr. M. Solomonovich}
+\institute{MacEwan University, Department of Mathematics}
+\date{April 19, 2024}
+\beamertemplatenavigationsymbolsempty
+
+
+\usepackage{biblatex}
+\usepackage{animate}
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{comment}
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+\usetikzlibrary{perspective,spath3}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    trig format=rad,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+\newcommand{\figureone}{1.7}
+\newcommand{\myscale}{1.5}
+\begin{document}
+
+
+%%% TITLE PAGE %%%
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Motivation}
+\subsection{The Basic Problem That I Studied}
+\section{Introducing \LaTeX}
+\subsection{What Is \LaTeX\ Anyway?}
+\section{Making Math Diagrams}
+\subsection{The Geometry Of Complex Numbers}
+\subsection{The Riemann Sphere ($\Sigma$) And Its Stereographic Projection ($S$)}
+\subsection{Defining The Extended Complex Plane ($\overline{\mathbb{C}}$)}
+\subsection{Deriving $S^{-1}:\overline{\mathbb{C}}\to\Sigma$ (I \& II)}
+\subsection{Intersecting $\Sigma$ With Planes (I \& II)}
+\subsection{The Intersection Set On $\overline{\mathbb{C}}$}
+\subsection{Spherical Coordinates On $\Sigma$ And $\overline{\mathbb{C}}$ (I \& II)}
+\subsection{A Rotation Of $\Sigma$ On $\overline{\mathbb{C}}$ In Spherical Coordinates}
+\section{Bibliography And Questions!}
+
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+
+\begin{frame}
+\frametitle{The Basic Problem That I Studied}
+\begin{block}{How Mathematicians Make Math Diagrams}
+My work focused on using \LaTeX\ to illustrate some mathematical concepts related to analysis in the extended complex plane, with special consideration being given to the stereographic projection, a tool for understanding complex transformations.
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{What Is \LaTeX\ Anyway?}
+\begin{block}{\LaTeX\ Is Not Rubber}
+\LaTeX\ is a document preparation system that enables mathematical communication without data loss.
+\end{block}
+
+\begin{block}{Where Do Textbook Diagrams Come From?}
+There are numerous packages which extend the capabilities of \LaTeX. Some important graphical packages include;
+\setbeamertemplate{enumerate items}[default]
+\begin{enumerate}
+\item Ti\textit{k}Z And  Its Related Packages/Libraries
+\setbeamertemplate{enumerate items}[ball]
+\begin{enumerate}
+\item pgfplots, tikz-3dplot \& tkz-euclide packages
+\item spath3 library
+\end{enumerate}
+\setbeamertemplate{enumerate items}[default]
+\item Asymptote \& Sage\TeX
+\end{enumerate}
+\end{block}
+
+\begin{block}{Making Algorithms That Write \LaTeX}
+You can design algorithms which iteratively make frames of paramaterized graphs that can be appended into a GIF.
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% THE GEOMETRY OF COMPLEX NUMBERS %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{The Geometry Of Complex Numbers}
+
+\begin{block}{What Are Complex Numbers?}
+Complex numbers are binomials of real and imaginary components; they can be represented as 2-tuples, enabling them to be plotted as points in a Cartesian plane; this is called the \emph{complex plane}, $\mathbb{C}$.
+\end{block}
+
+\begin{block}{The Polar Form Of A Complex Number}
+Euler's Formula, $e^{i\theta}=\cos(\theta)+i\sin(\theta)$, lets us represent complex numbers in terms of an angle (the \emph{argument}, $\arg(z)$) and a radius (the \emph{modulus}, $|z|$). That is, $z=|z|e^{i\arg(z)}$.
+\end{block}
+
+\begin{block}{Complex Arithmetic}
+To add complex numbers, we separately sum the real and imaginary parts. For multiplication, the polar representation is useful because complex numbers obey the fundamental exponential properties. For instance, $e^{i\theta}e^{i\mu}=e^{i(\theta+\mu)}$
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{The Riemann Sphere ($\Sigma$) And Its Stereographic
+
+Projection ($S$)}
+\vspace{-15pt}
+\bgroup
+
+\centering
+
+\resizebox{8cm}{!}{
+\tdplotsetmaincoords{65}{10}
+%\tdplotsetmaincoords{85}{10}
+\begin{tikzpicture}[tdplot_main_coords, scale=\figureone]
+\path[tdplot_screen_coords,spath/save=P] (0,0,0) circle [radius=0.03];
+\draw[-latex] (-1,0) -- (3.7,0) node[pos=1,below left]{$\eta,\ b$};
+\path[-latex] (-1,0) -- (3.7,0) node[pos=1,above]{$y$};
+\draw[-latex] (0,0) -- (0,-3.5) node[pos=1,left]{$\xi,\ a$};
+\path[-latex] (0,0) -- (0,-3.5) node[pos=1,below right]{$x$};
+\draw[] (-2,-4,0) -- (-2,3,0) -- (4,3,0) -- (4,-4,0) -- cycle;
+\node at (3.6,2.2,0) {$\overline{\mathbb{C}}$};
+\draw[-latex] (0,0,-2) -- (0,0,2) node[pos=1,right]{$\zeta,\ c$};
+\draw[tdplot_screen_coords] (0,0) circle [radius=1]; % outer circle
+\tdplotsetrotatedcoords{0}{0}{0}
+\draw[tdplot_rotated_coords] (0,0) circle [radius=1]; % base intersection
+\node[left] at (0,0,1) {$\scriptscriptstyle N$};
+\draw[] (0,0,1) -- (3,-2.5,0);
+\draw[dashed] (0,-2.5,0) -- (3,-2.5,0) -- (3,0,0);
+\node[left] at (0,-2.5,0) {$\scriptscriptstyle x$};
+\path[fill,spath/use={P, transform={shift={(\figureone*0,-\figureone*2.5,\figureone*0)}}}];
+\node[above] at (3,0,0) {$\scriptscriptstyle y$};
+\path[fill,spath/use={P, transform={shift={(\figureone*3,-\figureone*0,\figureone*0)}}}];
+\path[fill,spath/use={P, transform={shift={(\figureone*0.369,-\figureone*0.307,\figureone*0.876)}}}];
+\path[fill,spath/use={P, transform={shift={(\figureone*0,\figureone*0,\figureone*0.876)}}}];
+\path[fill,spath/use={P, transform={shift={(\figureone*0.369,-\figureone*0.307,\figureone*0)}}}];
+\node[above right] at (0.369,-0.307,0.876) {$\scriptscriptstyle P$};
+\node[left] at (0,0,0.876) {$\scriptscriptstyle M$};
+\node[below left] at (0.369,-0.307,0) {$\scriptscriptstyle Q$};
+\node[above left] at (0,0,-1) {$\scriptscriptstyle S$};
+\node[below right] at (3,-2.5,0) {$\scriptscriptstyle z$};
+\path[fill,spath/use={P, transform={shift={(\figureone*3,-\figureone*2.5,\figureone*0)}}}];
+\path[fill,spath/use={P, transform={shift={(\figureone*0,-\figureone*0,\figureone*1)}}}];
+\path[fill,spath/use={P, transform={shift={(\figureone*0,\figureone*0,-\figureone*1)}}}];
+\draw[dashed] (0,0,0.876) -- (0.369,-0.307,0.876) -- (0.369,-0.307,0);
+\draw[] (0,0,0) -- (3,-2.5,0);
+\node[above left] at (0,0) {$\scriptscriptstyle O$};
+\end{tikzpicture}}
+
+\egroup
+
+\vspace{-10pt}
+\[\boxed{\Sigma:\xi^2+\eta^2+\zeta^2=1}\]
+\vspace{-10pt}
+\[\triangle NzO\sim\triangle NPM\Rightarrow\frac{\overline{ON}}{\overline{MN}}=\frac{\overline{Oz}}{\overline{MP}}=\frac{\overline{Oz}}{\overline{OQ}}\]
+\vspace{-5pt}
+\[\Rightarrow\frac{\overline{Oz}}{\overline{OQ}}=\frac{\overline{ON}}{\overline{MN}}=\frac{1}{1-\zeta}\]
+\vspace{-5pt}
+\begin{equation}
+\Rightarrow S:(\xi,\eta,\zeta)\to(x,y,0)=\frac{1}{1-\zeta}(\xi,\eta,0)=\frac{\xi+i\eta}{1-\zeta}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{Defining The Extended Complex Plane ($\overline{\mathbb{C}}$)}
+
+\begin{block}{The Stereographic Image Of $N$}
+All points on $\Sigma$ excepting $N$ have a stereographic image on $\mathbb{C}$. 
+
+\vspace{10pt}
+
+Similar to how parallel lines when drawn in perspective meet at a vanishing point, as you increase your radial distance infinitely from the origin {\bf{}in any direction} on $\mathbb{C}$, the inverse stereographic mapping converges at $N$ on $\Sigma$. So we can suggest that the stereographic image of $N$ meets $\mathbb{C}$ at $\infty$.
+
+\vspace{10pt}
+
+This lets us define the extended complex plane $\overline{\mathbb{C}}$, which is the union of $\mathbb{C}$ and the point-at-infinity, $\{\infty\}$.
+
+\vspace{10pt}
+
+While not all algebraic properties are preserved for the point at infinity, the following four prove to be useful;
+
+\[\frac{a}{0}=\infty;\ a+\infty=\infty;\ a\cdot\infty=\infty;\ \frac{a}{\infty}=0\]
+
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Deriving Formulae For $S^{-1}:\overline{\mathbb{C}}\to\Sigma$ I %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Deriving $S^{-1}:\overline{\mathbb{C}}\to\Sigma$ I}
+
+\begin{block}{The Inverse Of Stereographic Projection}
+
+\[\mbox{Recall (1):}\quad S:P=\begin{bmatrix}\xi\\\eta\\\zeta\end{bmatrix}\to z=\begin{bmatrix}x\\y\\0\end{bmatrix}=\frac{\xi+i\eta}{1-\zeta}\]
+
+\begin{equation}
+\Rightarrow x=\frac{\xi}{1-\zeta};\ y=\frac{\eta}{1-\zeta}
+\end{equation}
+
+\[\mbox{From (2):}\quad |z|^2=z\overline{z}=(x+iy)(x-iy)=\frac{\xi^2+\eta^2}{(1-\zeta)^2}\]
+
+\begin{equation}
+\mbox{Notice:}\quad\Sigma:\xi^2+\eta^2+\zeta^2=1\Rightarrow\xi^2+\eta^2=1-\zeta^2
+\end{equation}
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Deriving $S^{-1}:\overline{\mathbb{C}}\to\Sigma$ II}
+
+We use difference of squares to obtain
+
+\vspace{-5pt}
+
+\[\frac{\xi^2+\eta^2}{(1-\zeta)^2}=\frac{1-\zeta^2}{(1-\zeta)^2}=\frac{1+\zeta}{1-\zeta}\]
+
+\vspace{7pt}
+
+Allowing us to define $\zeta$ in terms of $z$;
+
+\vspace{-25pt}
+
+\[\Rightarrow1+\zeta=|z|^2-|z|^2\zeta\Rightarrow\zeta(|z|^2+1)=|z|^2=1\Rightarrow\boxed{\zeta=\frac{|z|^2-1}{|z|^2+1}}\]
+
+\vspace{-5pt}
+
+Which lets us extract $\xi$ and $\eta$ from (1):
+
+\vspace{-15pt}
+
+\begin{equation}
+\Rightarrow1-\zeta=1-\frac{|z|^2-1}{|z|^2+1}=\frac{2}{|z|^2+1}\Rightarrow\left.\begin{aligned}\xi=\frac{2x}{1+|z|^2}\\\eta=\frac{2y}{1+|z|^2}\\\zeta=\frac{|z|^2-1}{|z|^2+1}\end{aligned}\right\}
+\end{equation}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% INTERSECTION WITH PLANES (I): QUESTION %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Intersecting $\Sigma$ With Planes I}
+
+\tdplotsetmaincoords{60}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=1.35]
+
+%%% GRID %%%
+\foreach \x in {-2,-1.75,...,5}{
+\path[draw,thin,densely dotted] ({\x},-2) -- ({\x},3);}
+\foreach \y in {-2,-1.75,...,3}{
+\path[draw,thin,densely dotted] (-2,{\y}) -- (5,{\y});}
+
+%%% BLANK OUT PARTS ON TOP %%%
+\tdplotsetrotatedcoords{180}{0}{0}
+\fill[tdplot_rotated_coords,white] ({cos(120)},{sin(120)}) arc [start angle=120, end angle=300, radius=1] -- cycle;
+\fill[tdplot_screen_coords,white] ({cos(0)},{sin(0)}) arc [start angle=0, end angle=180, radius=1] -- cycle;
+
+%%% MAIN CIRCLES %%%
+\draw[tdplot_screen_coords] (0,0) circle [radius=1];
+
+%%% XY %%%
+\tdplotsetrotatedcoords{180}{0}{0}
+\draw[tdplot_rotated_coords,densely dotted,thin] ({cos(120)},{sin(120)}) arc [start angle=120, end angle=300-360, radius=1];
+
+%%% YZ %%%
+\tdplotsetrotatedcoords{180}{90}{0}
+\draw[tdplot_rotated_coords,densely dotted,thin] ({cos(120)},{sin(120)}) arc [start angle=120, end angle=300-360, radius=1];
+\draw[tdplot_rotated_coords,thin] ({cos(120)},{sin(120)}) arc [start angle=120, end angle=300, radius=1];
+
+%%% XZ %%%
+\tdplotsetrotatedcoords{90}{90}{0}
+\draw[tdplot_rotated_coords,densely dotted,thin] ({cos(120+30)},{sin(120+30)}) arc [start angle=120+30, end angle=300-360+30, radius=1];
+\draw[tdplot_rotated_coords,thin] ({cos(120+30)},{sin(120+30)}) arc [start angle=120+30, end angle=300+30-102, radius=1];
+\draw[tdplot_rotated_coords,thin] ({cos(120+30+113)},{sin(120+30+113)}) arc [start angle=120+30+113, end angle=300+30, radius=1];
+
+%%% BEGIN DRAWN LAST %%%
+
+%%% POINTS %%%
+\path[tdplot_screen_coords,spath/save=P] (0,0) circle [radius=0.035];
+\path[fill,spath/use={P, transform={shift={(1.35*0,1.35*0,1.35*1)}}}];
+\node[above left] at (0,0,1) {$\scriptscriptstyle N$};
+\path[fill,spath/use={P, transform={shift={(1.35*0,1.35*0,1.35*0)}}}];
+\path[fill,spath/use={P, transform={shift={(1.35*0,1.35*1,1.35*0)}}}];
+\path[fill,spath/use={P, transform={shift={(1.35*0,1.35*-1,1.35*0)}}}];
+\path[fill,spath/use={P, transform={shift={(1.35*-1,1.35*0,1.35*0)}}}];
+\path[fill,spath/use={P, transform={shift={(1.35*1,1.35*0,1.35*0)}}}];
+\path[fill,spath/use={P, transform={shift={(1.35*0,1.35*0,1.35*-1)}}}];
+
+%%% END DRAWN LAST %%%
+
+%%% AXES%%%
+\draw[densely dotted,thin] (-1,0,0) -- (1,0,0);
+\draw[thin,-latex] (1,0,0) -- (1.5,0,0) node[pos=1,below left]{$\scriptscriptstyle x$};
+\draw[densely dotted,thin] (0,-1,0) -- (0,1,0);
+\draw[thin,-latex] (0,1,0) -- (0,1.5,0) node[pos=1,below right]{$\scriptscriptstyle y$};
+\draw[densely dotted,thin] (0,0,0) -- (0,0,1);
+\draw[thin,-latex] (0,0,1) -- (0,0,1.5) node[pos=1,below right]{$\scriptscriptstyle z$};
+\tdplotsetrotatedcoords{180}{0}{0}
+\path[tdplot_rotated_coords,spath/save=S] ({cos(120)},{sin(120)},0) arc [start angle=90+30, end angle=270+30, radius=1];
+\path[draw,spath/use={S, transform={shift={(1.35*0,1.35*0,1.35*0)}}}];
+
+
+\tdplotsetrotatedcoords{0}{65.556}{0}
+\path[tdplot_rotated_coords,spath/save=S] (0,0) circle [radius=0.3069];
+\path[draw,spath/use={S, transform={shift={(1.35*0.8664,1.35*0,1.35*0.3938)}}}];
+\path[fill,spath/use={P, transform={shift={(1.35*0.8664,1.35*0,1.35*0.3938)}}}];
+\end{tikzpicture}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% INTERSECTION WITH PLANES (II): MATH %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Intersecting $\Sigma$ With Planes (II)}
+
+\begin{block}{Circles Are Obtained By Cutting $\Sigma$ By Planes}
+
+\begin{equation}
+\mbox{Plane}:A\xi+B\eta+C\zeta+D=0
+\end{equation}
+
+To see the maps of the circles on $\overline{\mathbb{C}}$, we substitute (4) into (5);
+
+\begin{equation}
+\frac{2Ax}{1+|z|^2}+\frac{2By}{1+|z|^2}+\frac{C(|z|^2-1)}{|z|^2+1}+D=0
+\end{equation}
+
+Then we multiply (6) by $|z|^2+1$ and simplify, getting;
+
+\begin{equation}
+2Ax+2By+(C+D)|z|^2-C+D=0
+\end{equation}
+\end{block}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% The Intersection Set On $\overline{\mathbb{C}}$ %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{The Intersection Set On $\overline{\mathbb{C}}$}
+
+\bgroup
+
+\centering
+\resizebox{4in}{!}{
+\tdplotsetmaincoords{55}{60}
+%\tdplotsetmaincoords{85}{10}
+\begin{tikzpicture}[tdplot_main_coords, scale=1]
+\draw[rotate=30] (-4,-4,0) -- (-4,2.2,0) -- (7,2.2,0) -- (7,-4,0) -- cycle;
+\node at (0.8,-5,0) {$\overline{\mathbb{C}}$};
+\draw[-latex] (0,0,-3) -- (0,0,2); % z-axis
+\draw[tdplot_screen_coords] (0,0) circle [radius=1]; % outer circle
+\tdplotsetrotatedcoords{0}{0}{0}
+\draw[tdplot_rotated_coords] (0,0) circle [radius=1]; % base intersection
+\tdplotsetrotatedcoords{0}{21.8}{0}
+\path[tdplot_rotated_coords,spath/save=PcircS] (0,0) circle [radius=0.3714];
+\path[tdplot_rotated_coords,spath/save=PcircL] (0,0) circle [radius=0.3714];
+\path[fill,opacity=0.5,spath/use={PcircS, transform={shift={(1*0.35582,1*0,1*0.862)}}}]; % NOTE: we swapped x and y for simplicity
+\path[draw,spath/use={PcircS, transform={shift={(1*0.35582,1*0,1*0.862)}}}]; % NOTE: we swapped x and y for simplicity
+\draw[] (2.5,-3) -- (2.5,2);
+\draw[very thin] (0,0,1) -- (2.5,-2.2,0);
+\draw[very thin] (0,0,1) -- (2.5,1.5,0);
+\draw[very thin] (0,0,1) -- (2.5,0,0);
+\node[left] at (0,0,1) {$\scriptscriptstyle N$};
+
+\end{tikzpicture}
+\hspace{20pt}
+%\tdplotsetmaincoords{90}{90} % 90:0, 90:90, 0:90
+\tdplotsetmaincoords{55}{10}
+%\tdplotsetmaincoords{85}{10}
+\begin{tikzpicture}[tdplot_main_coords, scale=1]
+\draw[] (-2,-4,0) -- (-2,3,0) -- (6,3,0) -- (6,-4,0) -- cycle;
+\node at (-1.6,-3.2,0) {$\overline{\mathbb{C}}$};
+\draw[-latex] (0,0,-2) -- (0,0,2); % z-axis
+%\draw[-latex] (-2,0,0) -- (7,0,0) node[pos=1,above right]{$y,\zeta$}; % y-axis (swapped with the x for simplicity)
+\draw[tdplot_screen_coords] (0,0) circle [radius=1]; % outer circle
+\tdplotsetrotatedcoords{0}{0}{0}
+\draw[tdplot_rotated_coords] (0,0) circle [radius=1]; % base intersection
+\tdplotsetrotatedcoords{0}{37.87}{0}
+\path[tdplot_rotated_coords,spath/save=PcircS] (0,0) circle [radius=0.26];
+\path[tdplot_rotated_coords,spath/save=PcircL] (0,0) circle [radius=0.26];
+\path[fill,opacity=0.5,spath/use={PcircS, transform={shift={(1*0.5923,1*0,1*0.7615)}}}]; % NOTE: we swapped x and y for simplicity
+\path[draw,spath/use={PcircL, transform={shift={(1*0.5923,1*0,1*0.7615)}}}]; % NOTE: we swapped x and y for simplicity
+\draw[fill,opacity=0.5] (3.5,0) circle [radius=1.5];
+\draw[] (3.5,0) circle [radius=1.5];
+\draw[very thin] (0,0,1) -- (3.5,0,0);
+\draw[very thin] (0,0,1) -- (3.5,-1.5,0);
+\draw[very thin] (0,0,1) -- (3.5,1.5,0);
+\draw[very thin] (0,0,1) -- (2,0,0);
+\node[left] at (0,0,1) {$\scriptscriptstyle N$};
+\draw[fill,opacity=0.5] (0,0) circle [radius=0.26];
+\path[spath/save=PcircS] (0,0) circle [radius=0.4877];\
+\path[fill,opacity=0.5,spath/use={PcircS, transform={shift={(1*0,1*0,1*-0.873)}}}];
+\draw[very thin,dashed] (0,0,1) -- (0.4877,0,-0.873);
+\draw[very thin,dashed] (0,0,1) -- (-0.4877,0,-0.873);
+\end{tikzpicture}}
+
+\egroup
+
+\begin{block}{Planes Through $N$ Make Lines}
+\begin{enumerate}
+\item[$(i)$] If $C+D=0$, then (7) reduces to $Ax+By-C=0$ - a straight line in $\overline{\mathbb{C}}$. Geometrically, this means the plane intersects $N$.
+\item[$(ii)$] If $C+D\neq0$, then we can divide (7) by $(C+D)$ and complete the square, giving the equation of a circle;
+\[\left(x+\frac{A}{C+D}\right)^2+\left(y+\frac{B}{C+D}\right)^2=\frac{A^2+B^2}{(C+D)^2}+D-C\]
+\end{enumerate}
+\end{block}
+\end{frame}
+
+%%% SPHERICAL COORDINATES %%%
+\begin{frame}
+\frametitle{Spherical Coordinates On $\Sigma$ and $\overline{\mathbb{C}}$ I}
+
+\begin{figure}
+\tdplotsetmaincoords{0}{0}
+\begin{tikzpicture}[tdplot_main_coords, scale=1]
+\draw[tdplot_screen_coords] (0,0) circle [radius=1];
+\foreach \t in {0, 10, ..., 350}{
+\begin{scope}
+%\clip[] (-2,-2,0) rectangle (2,2,2);
+\tdplotsetrotatedcoords{0}{\t}{0}
+\draw[tdplot_rotated_coords,very thin] (0,0) circle [radius=1];
+\tdplotsetrotatedcoords{90}{90}{0}
+\draw[tdplot_rotated_coords,very thin] (0,0,{sin(\t)}) circle [radius={cos(\t)}];
+\end{scope}}
+\draw[tdplot_screen_coords,-latex] (0,0,0) -- ({1.7*cos(0)},{1.7*sin(0)},0) node[pos=1,below]{$\overline{\mathbb{C}}$};
+\draw[tdplot_screen_coords,-latex] (0,0,0) -- ({1.7*cos(90)},{1.7*sin(90)},0) node[pos=1,left]{$z$};
+\draw[tdplot_screen_coords] (0,0,0) -- ({1.7*cos(180)},{1.7*sin(180)},0);
+\draw[tdplot_screen_coords,-|] (0,0,0) -- ({1.7*cos(40)},{1.7*sin(40)},0); %%%!!!
+\draw[tdplot_screen_coords,densely dashed,-|] (0,0,0) -- ({1.7*cos(140)},{1.7*sin(140)},0); %%%!!!
+\draw[tdplot_screen_coords,very thin,-latex] ({1.2*cos(90)},{1.2*sin(90)},0) arc [start angle=90, end angle=40, radius=1.2];
+\draw[tdplot_screen_coords,very thin,-latex,densely dashed] ({1.2*cos(90)},{1.2*sin(90)},0) arc [start angle=90, end angle=140, radius=1.2];
+\draw[tdplot_screen_coords] (0,0,0) -- ({1.7*cos(270)},{1.7*sin(270)},0);
+\node[tdplot_screen_coords] at ({1.4*cos(65)},{1.4*sin(65)},0) {$\phi$};
+\end{tikzpicture}
+\raisebox{0.6cm}{
+\tdplotsetmaincoords{30}{30}
+\begin{tikzpicture}[tdplot_main_coords, scale=1]
+\draw[tdplot_screen_coords] (0,0) circle [radius=1]; % outer circle
+\foreach \t in {0, 10, ..., 350}{
+\begin{scope}
+%\clip[] (-2,-2,0) rectangle (2,2,2);
+\tdplotsetrotatedcoords{0}{\t}{0}
+\draw[tdplot_rotated_coords,very thin] (0,0) circle [radius=1];
+\tdplotsetrotatedcoords{90}{90}{0}
+\draw[tdplot_rotated_coords,very thin] (0,0,{sin(\t)}) circle [radius={cos(\t)}];
+\end{scope}}
+\end{tikzpicture}}
+\tdplotsetmaincoords{90}{0}
+\begin{tikzpicture}[tdplot_main_coords, scale=1]
+\draw[tdplot_screen_coords] (0,0) circle [radius=1]; % outer circle
+\foreach \t in {0, 10, ..., 350}{
+\begin{scope}
+%\clip[] (-2,-2,0) rectangle (2,2,2);
+\tdplotsetrotatedcoords{0}{\t}{0}
+\draw[tdplot_rotated_coords,very thin] (0,0) circle [radius=1];
+\tdplotsetrotatedcoords{90}{90}{0}
+\draw[tdplot_rotated_coords,very thin] (0,0,{sin(\t)}) circle [radius={cos(\t)}];
+\end{scope}}
+\tdplotsetrotatedcoords{90}{90}{0}
+\draw[tdplot_rotated_coords] (0,0,0) -- ({1.7*cos(0)},{1.7*sin(0)},0);
+\draw[tdplot_rotated_coords] (0,0,0) -- ({1.7*cos(90)},{1.7*sin(90)},0);
+\draw[tdplot_rotated_coords,-latex] (0,0,0) -- ({1.7*cos(180)},{1.7*sin(180)},0) node[pos=1,left]{$y$};
+\draw[tdplot_rotated_coords,-|] (0,0,0) -- ({1.7*cos(180+60)},{1.7*sin(180+60)},0); %%%!!!
+\draw[tdplot_rotated_coords,very thin,-latex] ({1.2*cos(270)},{1.2*sin(270)},0) arc [start angle=270, end angle=240, radius=1.2];
+\draw[tdplot_rotated_coords,-latex] (0,0,0) -- ({1.7*cos(270)},{1.7*sin(270)},0) node[pos=1,below]{$x$};
+\node[tdplot_rotated_coords] at ({1.4*cos(180+75)},{1.4*sin(180+75)},0) {$\theta$};
+\end{tikzpicture}
+\end{figure}
+
+\begin{block}{Latitudinal And Longitudinal (Spherical) Coordinates}
+
+\[0\leq\phi\leq180\qquad0\leq\theta\leq360\]
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Spherical Coordinates On $\Sigma$ and $\overline{\mathbb{C}}$ II}
+
+\begin{figure}
+\animategraphics[width=5cm,loop,autoplay]{10}{C:/Users/twill/OneDrive/Desktop/compressed/final_output (1)/e9a29863-5421-492f-9335-e911cf18259b-}{0}{38}
+\animategraphics[width=5cm,loop,autoplay]{10}{C:/Users/twill/OneDrive/Desktop/compressed/final_output/0035af8a-e49b-4752-bb9e-fe18d2ed3b87-}{0}{118}
+
+\end{figure}
+\begin{block}{Latitudinal And Longitudinal Lines Of A Rotated $\Sigma$ on $\overline{\mathbb{C}}$}
+
+\[
+\begin{aligned}
+C_{lat}&=\frac{1}{\cos\theta}\qquad\quad &R_{lat}&=\sqrt{\frac{1}{\cos^2\theta}-\cos\theta}\\
+C_{lon}&=-\frac{\sin\theta}{\cos\theta} &R_{lon}&=\frac{1}{\cos\theta}
+\end{aligned}
+\]
+\end{block}
+\end{frame}
+
+%%% MOBIUS TRANSFORMATION %%%
+\begin{frame}
+\frametitle{A Rotation Of $\Sigma$ On $\overline{\mathbb{C}}$ In Spherical Coordinates}
+
+\begin{figure}
+\tdplotsetmaincoords{65}{165}
+\begin{tikzpicture}[tdplot_main_coords,scale=\myscale]
+\draw[tdplot_screen_coords] (0,0) circle [radius=1];
+\foreach \t in {0, 10, ..., 350}{
+\begin{scope}
+%\clip[] (-2,-2,0) rectangle (2,2,2);
+\tdplotsetrotatedcoords{90}{\t}{0}
+\draw[tdplot_rotated_coords,very thin] (0,0) circle [radius=1];
+\tdplotsetrotatedcoords{180}{90}{0}
+\draw[tdplot_rotated_coords,very thin] (0,0,{sin(\t)}) circle [radius={cos(\t)}];
+\end{scope}}
+\clip[] (-4.3,-3) rectangle (4.8,4.5);
+\foreach \k in {10,20,...,80}{
+%%% on C %%%
+\draw[] ({1/cos(\k)},0) circle [radius={sqrt(1/(cos(\k)^2)-cos(\k))}];
+\draw[] (0,{-sin(\k)/cos(\k)}) circle [radius={1/cos(\k)}];
+}
+\foreach \k in {100,110,...,170}{
+%%% on C %%%
+\draw[] ({1/cos(\k)},0) circle [radius={sqrt(1/(abs(cos(\k))^2)-abs(cos(\k)))}];
+\draw[] (0,{-sin(\k)/cos(\k)}) circle [radius={1/cos(\k)}];
+}
+\draw[] (0,0) circle [radius=1];
+\draw[] (0,-7,0) -- (0,7,0); % circle at infinity
+\draw[] (-7,0,0) -- (7,0,0); % circle at infinity
+
+%%% axes %%%
+\draw[-latex,thick] (-2,0,0) -- (2,0,0) node[pos=1,below left]{$x,\xi$}; % x-axis
+\draw[-latex,thick] (0,-3.5,0) -- (0,3.5,0) node[pos=1,below right]{$y,\eta$}; % y-axis
+\draw[-latex,thick] (0,0,-2) -- (0,0,1.5) node[pos=1,above right]{$z,\zeta$}; % z-axis
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%
+%%% BIBLIOGRAPHY %%%
+%%%%%%%%%%%%%%%
+
+\begin{frame}[allowframebreaks]{Outline}
+\frametitle{Bibliography}
+
+\begin{thebibliography}{1}
+\bibitem{ahlfors23}
+L. Ahlfors, \emph{COMPLEX ANALYSIS}. McGraw-Hill, Inc., [City Unknown], 1979.
+
+\bibitem{feuersanger21}
+C. Feuersanger, Comprehensive \TeX\ Archive Network, \emph{Manual for Package PGFPLOTS} (2021), https://mirror.quantum5.ca/ CTAN/graphics/pgf/contrib/pgfplots/doc/pgfplots.pdf.
+
+\bibitem{drake23}
+D. Drake and others, Comprehensive \TeX\ Archive Network, \emph{The Sage\TeX\ package} (2023), https://mirror.quantum5.ca/ CTAN/macros/latex/contrib/sagetex/sagetex.pdf.
+
+\bibitem{hammerlindl24}
+A. Hammerlindl, et. al., Comprehensive \TeX\ Archive Network, \emph{Asymptote: the Vector Graphics Language} (2024), https:// ctan.mirror.globo.tech/graphics/asymptote/doc/asymptote.pdf.
+
+\bibitem{hein12}
+J. Hein, Comprehensive \TeX\ Archive Network, \emph{The tikz-3dplot Package} (2012), https://muug.ca/mirror/ctan/graphics/pgf/ contrib/tikz-3dplot/tikz-3dplot\_documentation.pdf.
+
+\bibitem{henle97}
+M. Henle, \emph{Modern Geometries: the analytic approach}. Prentice Hall, Upper Saddle River N.J., 1997.
+
+\bibitem{matthes24}
+A. Matthes, Comprehensive \TeX\ Archive Network, \emph{tkz-euclide} (2024), https://ctan.mirror.globo.tech/macros/latex/contrib/ tkz/tkz-euclide/doc/tkz-euclide.pdf.
+
+\bibitem{stacey22}
+A. Stacey, Comprehensive \TeX\ Archive Network, \emph{The spath3 Package: Documentation} (2022), https://mirror.las.iastate.edu/tex-archive/graphics/pgf/contrib/spath3/spath3.pdf.
+
+\bibitem{tantau24}
+T. Tantau, PGF/Ti\textit{k}Z Manual, \emph{The Ti\textit{k}Z and PGF Packages} (2024), https://tikz.dev/.
+
+\bibitem{wright24}
+J. Wright, Comprehensive \TeX\ Archive Network, \emph{The BEAMER \textit{class}} (2024), https://mirror.its.dal.ca/ctan/ macros/latex/contrib/beamer/doc/beameruserguide.pdf.
+\end{thebibliography}
+\end{frame}
+
+\begin{frame}
+\frametitle{Thank You!}
+
+\begin{block}{Questions And Comments}
+I want to hear what you think; if you're interested in making your own math diagrams, feel free to approach me and I can connect you to resources.
+\end{block}
+\end{frame}
+
+\end{document}
