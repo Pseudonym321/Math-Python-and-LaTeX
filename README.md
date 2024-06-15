@@ -1,6 +1,6 @@
 Hello World!
 
-I am Jasper Nice, and this is a showcase of my work
+I am Jasper Nice (formerly Tyler), and this is a showcase of my work
 
 I love making animated math gifs, and plan on doing it professionally one day
 
