@@ -1,0 +1,98 @@
+\documentclass{book}
+
+%other packages
+\usepackage[a4paper]{geometry}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\setlength\parindent{0pt}
+\usepackage{enumitem}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{polynom}
+\def\scaleint#1{\vcenter{\hbox{\scaleto[3ex]{\displaystyle\int}{#1}}}}
+\usepackage{array}
+\newcolumntype{C}{>{{}}c<{{}}} % for '+' and '-' symbols
+\newcolumntype{R}{>{\displaystyle}r} % automatic display-style math mode 
+\usepackage{tabularray}
+\usepackage{dcolumn,tabularx,booktabs}
+\usepackage{esvect}
+\usepackage{calc}
+
+%maths
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{autobreak}
+
+%tikzpicture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usepackage{tikz-3dplot}
+\usepackage{tikz-cd}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+\usetikzlibrary{perspective,spath3}
+\usetikzlibrary{intersections}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    trig format=rad,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{document}
+
+
+Verify that one root of a complex number follows this formula:
+
+\[\sqrt{x+iy}=\sqrt{\frac{\sqrt{x^2+y^2}+x}{2}}+i\sqrt{\frac{\sqrt{x^2+y^2}-x}{2}} \mbox{ for all } y\geq0\]
+
+\vspace{20pt}
+
+\begin{center}
+\begin{tikzpicture}
+\draw[thick] (-5,0) -- (5,0);
+\draw[thick] (0,-5) -- (0,5);
+\draw[] (0,0) circle [radius=1];
+\draw[] (0,0) -- (60:4);
+\fill[] (60:4) circle [radius=0.1] node[right]{$z=|z|e^{i\arg(z)}$};
+\draw[] (0,0) -- (30:2);
+\fill[] (30:2) circle [radius=0.1] node[right]{$\sqrt{z}=\sqrt{|z|}e^{i\arg(z)/2}$};
+\draw[] (0,0) -- (210:2);
+\fill[] (210:2) circle [radius=0.1] node[below left]{$\sqrt{z}=\sqrt{|z|}e^{i(\arg(z)/2+\pi})$};
+\end{tikzpicture}
+\end{center}
+
+
+
+\begin{align*}
+\sqrt{z}=\sqrt{|z|}e^{i\arg(z)/2}&=\sqrt{x^2+y^2}\cdot\left[\cos\left(\frac{\arg(z)}{2}\right)+i\sin\left(\frac{\arg(z)}{2}\right)\right]\\
+\cos\left(\frac{\arg(z)}{2}\right)&=\cos\left(\frac{1}{2}\arctan\left(\frac{x}{y}\right)\right)\\
+&=\cos\left(\frac{1}{2}\arccos\left(\frac{x}{\sqrt{x^2+y^2}}\right)\right)\\
+\sin\left(\frac{\arg(z)}{2}\right)&=\sin\left(\frac{1}{2}\arcsin\left(\frac{y}{\sqrt{x^2+y^2}}\right)\right)
+\end{align*}
+
+
+
+
+
+\end{document}
