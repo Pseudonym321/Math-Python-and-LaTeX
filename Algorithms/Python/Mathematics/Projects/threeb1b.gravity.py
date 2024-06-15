@@ -2,7 +2,7 @@
 import numpy as np
 import os
 import shutil
-numiter = 14
+numiter = 24
 start = r'''
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
