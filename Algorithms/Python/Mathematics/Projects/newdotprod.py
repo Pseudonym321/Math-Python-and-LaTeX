@@ -18,6 +18,7 @@ start= r'''
 '''
 end = r'''
 \begin{tikzpicture}[scale=1]
+\draw[white] (-5,-5) rectangle (5,5);
 \coordinate (O) at (0,0);
 \coordinate (V1) at (0:1.75);
 \coordinate (V2) at (\mytheta:4);
