@@ -133,7 +133,7 @@ def remove_first_page(input_pdf, output_pdf):
 
 import subprocess
 
-output_directory = r'C:\Users\twill\OneDrive\Documents\GitHub\EquationMaster'
+output_directory = r''
 
 # Function to compile a TeX file to PDF
 def compile_tex_to_pdf(tex_file):
@@ -152,7 +152,7 @@ merged_pdf = os.path.join(output_directory, 'merged_output.pdf') # make this the
 
 for i in range(0, num_iterations + 1):
     # Create a TeX file for each iteration
-    tex_file = 'file_{}.tex'.format(i)
+    tex_file = 'file_{}.tex'.format(1)
     rotate((i*10)*np.pi/180)
     string = make_tikz_code()
     with open(tex_file, 'w') as f:
