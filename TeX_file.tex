@@ -1,0 +1,31 @@
+\documentclass{beamer}
+\beamertemplatenavigationsymbolsempty
+\usepackage{mathtools,amsmath,amssymb,amsfonts,physics}
+\usepackage{tikz,scalerel,tikz-3dplot,tkz-euclide}
+\usepackage{pict2e,ifthen}
+\usetikzlibrary{calc,patterns,arrows.meta}
+\usetikzlibrary{shadows,external,perspective,spath3}
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+\begin{document}
+\begin{frame}
+\centering
+\begin{tikzpicture}[scale=3]
+\draw[thick,-latex] (-1.3,0) -- (1.3,0);
+\draw[thick,-latex] (0,-0.3) -- (0,2.3);
+\draw[domain=-1.23:1.18,smooth,variable=\Vt]
+  plot (\Vt,{\Vt*\Vt*\Vt-0.5*\Vt+1},0);
+\draw[] (-1,0) -- (-1,2) node[pos=1,above]{$a$};
+\draw[] (1,0) -- (1,2) node[pos=1,above]{$b$};
+line 0
+line 1
+line 2
+line 3
+line 4
+line 5
+line 6
+line 7
+line 8
+line 9
+\end{tikzpicture}
+\end{frame}
+\end{document}
