@@ -14,6 +14,7 @@ def Riemann_sum(initial_bound:float, terminal_bound:float, number_of_denominatio
     left_Riemann_inputs = [(initial_bound + denomination_number * denomination_width) for denomination_number in range(number_of_denominations)]
     return denomination_width, left_Riemann_inputs
 
-inputs = Riemann_sum(-5,6,10)[1]
+
+
 
 
