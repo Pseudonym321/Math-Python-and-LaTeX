@@ -1,5 +1,6 @@
 import Riemann_integral as Ri
 import subprocess, os, shutil
+from pypdf import PdfReader, PdfWriter
 preamble = r"""\documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
 \usepackage{tikz}
@@ -18,7 +19,7 @@ postscript = r"""\end{tikzpicture}
 \end{frame}
 \end{document}"""
 
-from pypdf import PdfReader, PdfWriter
+
 
 def remove_first_page(input_pdf, output_pdf):
     pdf_reader = PdfReader(input_pdf)
