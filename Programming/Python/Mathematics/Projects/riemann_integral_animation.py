@@ -1,4 +1,4 @@
-import Programming.Python.Mathematics.Modules.Riemann_integral as Ri
+import Riemann_integral as Ri
 with open("TeX_file.tex", "w") as tex:
     preamble = r"""\documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
@@ -14,10 +14,14 @@ with open("TeX_file.tex", "w") as tex:
 \draw[] (-1,0) -- (-1,2) node[pos=1,above]{$a$};
 \draw[] (1,0) -- (1,2) node[pos=1,above]{$b$};
 """
-    tex.write(preamble)
+    postscript = r"""\end{tikzpicture}
+\end{frame}
+\end{document}"""
     for num in range (5,27):
+        tex.write(preamble)
         delta, inputs = Ri.Riemann_sum(-1,1,num)
         for input in inputs:
-            new_line = f"\\draw[] ({input},0) -- ({input},{{}}) -- \n"
+            new_line = f"\\draw[] ({input},0) -- ({input},{{{input}^3-0.5*{input}+1}}) -- \n"
             tex.write(new_line)
+        tex.write(postscript)
     
