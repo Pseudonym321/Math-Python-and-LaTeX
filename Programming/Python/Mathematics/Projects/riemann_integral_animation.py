@@ -37,7 +37,7 @@ merged_pdf = os.path.join("", 'merged_output.pdf')
 
 
 
-for num in range (5,27):
+for num in range (5,30):
     with open("TeX_file.tex", "w") as tex:
         tex.write(preamble)
         delta, inputs = Ri.Riemann_sum(-1,1,num)
@@ -45,8 +45,8 @@ for num in range (5,27):
             new_line = f"\\draw[] ({input},0) -- ({input},{{{input}^3-0.5*{input}+1}}) -- ++({delta},0) |- (0,0);\n"
             tex.write(new_line)
         tex.write(postscript)
-    subprocess.run(['pdflatex', r'TeX_file.tex'])
-    temp_pdf = os.path.join("TeX_file.pdf", 'merged_output_temp.pdf')
+    subprocess.run(['pdflatex', 'TeX_file.tex'])
+    temp_pdf = os.path.join("", 'merged_output_temp.pdf')
     subprocess.run(['gswin64c', '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + "TeX_file.pdf", os.path.abspath(merged_pdf), os.path.abspath(temp_pdf)])
     shutil.move(temp_pdf, merged_pdf)
 remove_first_page(merged_pdf, os.path.join(merged_pdf, 'final_output.pdf'))
