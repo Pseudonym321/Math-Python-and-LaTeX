@@ -1,5 +1,6 @@
 import Riemann_integral as Ri
-import subprocess, os, shutil
+import subprocess, shutil
+import os
 from pypdf import PdfReader, PdfWriter
 preamble = r"""\documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
@@ -36,14 +37,12 @@ merged_pdf = os.path.join("", 'merged_output.pdf')
 
 
 
-while 1<2:
-    print("!")
 for num in range (5,27):
     with open("TeX_file.tex", "w") as tex:
         tex.write(preamble)
         delta, inputs = Ri.Riemann_sum(-1,1,num)
         for input in inputs:
-            new_line = f"\\draw[] ({input},0) -- ({input},{{({input}^3-0.5*{input}+1)}}) -- ++({delta},0) |- (0,0);\n"
+            new_line = f"\\draw[] ({input},0) -- ({input},{{{input}^3-0.5*{input}+1}}) -- ++({delta},0) |- (0,0);\n"
             tex.write(new_line)
         tex.write(postscript)
     subprocess.run(['pdflatex', r'TeX_file.tex'])
