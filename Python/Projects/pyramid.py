@@ -4,15 +4,14 @@ import os
 import shutil
 numiter = 24
 start= r'''
-\documentclass{beamer}
-\beamertemplatenavigationsymbolsempty
+\documentclass{article}
 \usepackage{tikz,tikz-3dplot}
 \usetikzlibrary{spath3}
 '''
 end = r'''
 \begin{document}
 \tdplotsetmaincoords{45}{\Vt}
-\begin{tikzpicture}[tdplot_main_coords,scale=0.75]
+\begin{tikzpicture}[tdplot_main_coords]
 %%% AXES %%%
 
 \draw[-latex] (0,0,0) -- (5,0,0) node[pos=1]{$x$};
@@ -35,7 +34,6 @@ end = r'''
 %%% INITIAL %%%
 %\fill[blue][spath/use={point, transform={shift={({1},{2},{1})}}}]; %a
 
-\draw[white,tdplot_screen_coords] (-6,-6) rectangle (6,6);
 \end{tikzpicture}
 \end{document}
 '''

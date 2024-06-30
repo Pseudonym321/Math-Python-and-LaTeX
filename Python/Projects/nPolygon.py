@@ -6,11 +6,7 @@ from pypdf import PdfReader, PdfWriter
 preamble = r"""
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
-%%% PACKAGES %%%
-\usepackage{tikz,tikz-3dplot}
-\usetikzlibrary{spath3}
-%%% DEFINITIONS %%%
-\newcommand{\Vazi}{120}
+\usepackage{tikz}
 """
 postscript = r"""
 \begin{document}
