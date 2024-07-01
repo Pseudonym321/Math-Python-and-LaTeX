@@ -6,7 +6,7 @@ from pypdf import PdfReader, PdfWriter
 preamble = r"""
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
-\usepackage{tikz,pythontex}
+\usepackage{tikz}
 \usetikzlibrary{spath3}
 \newcommand{\Vn}{7}
 \begin{document}
