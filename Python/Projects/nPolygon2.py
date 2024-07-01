@@ -13,13 +13,13 @@ def latex(n):
     LaTeX += r"""
     \begin{document}
     \centering
-    \begin{tikzpicture}[scale=2.5]
+    \begin{tikzpicture}[scale=1]
     """
 
-    big_draw = r"\foreach \Vt in {0,1,...," + f"{n}" +"}{\n"
+    big_draw = r""
     for i in range(1,n+1):
         big_draw += r"\draw[-latex] (0,0) -- ({cos(90+(" + f"{i}" + r"*360/" + f"{n}" + r"))},{sin(90+(" + f"{i}" + r"*360/" + f"{n}" + r"))});" +"\n"
-        big_draw += r"\draw[] ({cos(90+(" + f"{i}" + r"*360/" + f"{n}" + r"))},{sin(90+(" + f"{i}" + r"*360/" + f"{n}" + r"))}) -- ({cos(90+((" + f"{i}" + r"+1)*360/" + f"{n}" + r"))},{sin(90+((" + f"{i}" + r"+1)*360/" + f"{n}" + r"))});}"
+        big_draw += r"\draw[] ({cos(90+(" + f"{i}" + r"*360/" + f"{n}" + r"))},{sin(90+(" + f"{i}" + r"*360/" + f"{n}" + r"))}) -- ({cos(90+((" + f"{i}" + r"+1)*360/" + f"{n}" + r"))},{sin(90+((" + f"{i}" + r"+1)*360/" + f"{n}" + r"))});" +"\n"
     LaTeX += big_draw
 
     big_draw = r"""
@@ -34,7 +34,7 @@ def latex(n):
 
 
     LaTeX += r"""
-    \draw[white] (-1.5,-1.5) rectangle (1.5,1.5);
+    \draw[white] (-3,-3) rectangle (3,3);
     \end{tikzpicture}
     \end{document}
     """
@@ -67,7 +67,7 @@ tex_file = "TeX_file.tex"
 pdf_file = "TeX_file.pdf"
 output_directory = r''
 merged_pdf = os.path.join(output_directory, 'merged_output.pdf')
-for angle in range(2,10,1):
+for angle in range(2,14,1):
     with open(tex_file, "w") as tex:
         tex.write(latex(angle))
     compile_tex_to_pdf(tex_file)
