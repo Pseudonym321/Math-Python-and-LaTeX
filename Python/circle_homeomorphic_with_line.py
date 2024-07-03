@@ -59,6 +59,11 @@ end = r'''
 
 
 def draw_path(x,y):
+    """
+    
+    
+    
+    """
     if np.abs((-L*x)/(y-L)) < 40:
         return r'''\draw[] (0,8) -- ({},0);
 \fill[] ({},{}) circle [radius=0.08];

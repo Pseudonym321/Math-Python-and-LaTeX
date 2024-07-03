@@ -33,9 +33,11 @@ fill opacity=.5]
 def main():
     """
     Purpose:
+        Makes a spinning bumpy sphere.
     Parameters:
+        No parameters.
     Return:
-    
+        Void.
     """
     animatetex.before_loop()
     for theta in np.linspace(0,48,numiter):

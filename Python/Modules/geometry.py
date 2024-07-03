@@ -36,17 +36,49 @@ def cartesian_to_polar(x, y):
     mod = math.sqrt(x**2 + y**2)
     return arg, mod
 
-def polar_to_cartesian(arg, mod): # works, input in degrees
+def polar_to_cartesian(arg, mod):
+    """
+    Purpose:
+        Converts polar (in degrees) complex points to their cartesian form.
+    Parameters:
+        inv_arg - the argument in degreed
+        inv_mod - the modulus
+    Return:
+        x - the real input
+        y - the complex input
+    """
     x = mod * math.cos(arg*(math.pi/180))
     y = mod * math.sin(arg*(math.pi/180))
     return x, y
 
 def stereographic_projection(xi, eta, zeta):
+    """
+    Purpose:
+        Given the coordinates of a point on a sphere, gives that points shadow on the complex plane
+    Parameters:
+        xi - the x coordinate
+        eta - the y coordinate
+        zeta - the z coordinate
+    Return:
+        Re - the real output
+        Im - the complex output
+    """
     Re = xi/(1-zeta)
     Im = eta/(1-zeta)
     return Re, Im
 
 def inverse_stereographic_projection(Re, Im):
+    """
+    Purpose:
+        Given a complex point, gives that points shadow on the riemann sphere
+    Parameters:
+        Re - the real input
+        Im - the complex input
+    Return:
+        xi - the x coordinate
+        eta - the y coordinate
+        zeta - the z coordinate
+    """
     xi = 2*Re/(1+Re**2+Im**2)
     eta = 2*Im/(1+Re**2+Im**2)
     zeta = (Re**2+Im**2-1)/(1+Re**2+Im**2)

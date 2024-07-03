@@ -1,11 +1,9 @@
-
 import subprocess
 import shutil
 import os
 from pypdf import PdfReader, PdfWriter
 import subprocess
 from reportlab.pdfgen import canvas
-
 
 def before_loop():
     """
@@ -91,8 +89,6 @@ def make_temp():
     c = canvas.Canvas(temp_pdf)
     c.save()
 
-
-# Function to append two PDF files
 def append_pdfs(pdf1, pdf2, output_pdf):
     """
     Purpose:
@@ -118,7 +114,6 @@ def rename_pdf():
     """
     shutil.move(temp_pdf, merged_pdf)
     #subprocess.run(['mv', 'merged_output_temp.pdf', merged_pdf])
-
 
 def after_loop():
     """
