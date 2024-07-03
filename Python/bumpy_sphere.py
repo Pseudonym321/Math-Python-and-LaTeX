@@ -1,6 +1,6 @@
 
 import numpy as np
-import animatetex
+import Python.Modules.animatetex as animatetex
 numiter = 24
 preamble= r'''
 \documentclass{beamer}

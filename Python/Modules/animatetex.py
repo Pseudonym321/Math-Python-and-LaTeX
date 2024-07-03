@@ -21,7 +21,7 @@ def file_names():
     global TeX_file, pdf_file, output_directory, merged_temp
     TeX_file = "TeX_file.tex"
     pdf_file = "TeX_file.pdf"
-    output_directory = r''
+    output_directory = r"C:\Users\twill\OneDrive\Documents\Files\Professional\GitHub\Math-Python-and-LaTeX-1"
     merged_temp = 'merged_output_temp.pdf'
 
 def make_merged():
