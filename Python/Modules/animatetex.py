@@ -83,7 +83,8 @@ def make_temp():
         Void.
     """
     global temp_pdf
-    parent_directory = os.path.dirname(os.path.abspath(__file__))
+    #parent_directory = os.path.dirname(os.path.abspath(__file__))
+    parent_directory = output_directory
     temp_pdf = os.path.join(parent_directory, merged_temp)
 
     c = canvas.Canvas(temp_pdf)
@@ -100,7 +101,11 @@ def append_pdfs(pdf1, pdf2, output_pdf):
     Return:
         Void.
     """
+    ### FOR CHEAP LAPTOP ###
+    #subprocess.run(['gswin64', '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + output_pdf, os.path.abspath(pdf1), os.path.abspath(pdf2)])
+    ### FOR FAST LAPTOP ###
     subprocess.run(['gswin64c', '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + output_pdf, os.path.abspath(pdf1), os.path.abspath(pdf2)])
+    ### FOR MIKTEX %%%
     #subprocess.run(['mgs', '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + output_pdf, pdf1, pdf2])
 
 def rename_pdf():
