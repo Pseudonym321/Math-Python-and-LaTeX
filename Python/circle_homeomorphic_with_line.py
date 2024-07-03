@@ -11,19 +11,11 @@ numiter = 24
 def x_input_function(x_input):
     return (2*x_input*r*np.abs((L**2)/(x_input**2+L**2))**(1/2))/np.abs(x_input**2+L**2)**(1/2)
 
-
-x_input_list = [x_input_function(x_input) for x_input in np.linspace(-10,10,linspace_amount)]
-
 def y_input_function_upper(x_input):
     return (np.abs(r**2-x_input**2)**(1/2)+L-r)
 
 def y_input_function_lower(x_input):
     return (-np.abs(r**2-x_input**2)**(1/2)+L-r)
-
-
-y_input_list = [y_input_function_upper(x_input) for x_input in x_input_list[:int(0.1*linspace_amount)]]
-y_input_list.extend([y_input_function_lower(x_input) for x_input in x_input_list[int(0.1*linspace_amount):int(0.9*linspace_amount)]])
-y_input_list.extend([y_input_function_upper(x_input) for x_input in x_input_list[int(0.9*linspace_amount):]])
 
 # https://stackoverflow.com/questions/34372480/rotate-point-about-another-point-in-degrees-python
 import math
@@ -35,8 +27,6 @@ def rotate_y(y,x,theta):
     yr=math.sin(theta)*(x-0)+math.cos(theta)*(y-(L-r))  + (L-r)
     return yr
 
-rotated_x_list = []
-rotated_y_list = []
 
 def rotate(angle):
     global rotated_x_list,rotated_y_list
@@ -78,6 +68,13 @@ def draw_path(x,y):
 '''
 
 def main():
+    global x_input_list, y_input_list, rotated_x_list, rotated_y_list
+    x_input_list = [x_input_function(x_input) for x_input in np.linspace(-10,10,linspace_amount)]
+    y_input_list = [y_input_function_upper(x_input) for x_input in x_input_list[:int(0.1*linspace_amount)]]
+    y_input_list.extend([y_input_function_lower(x_input) for x_input in x_input_list[int(0.1*linspace_amount):int(0.9*linspace_amount)]])
+    y_input_list.extend([y_input_function_upper(x_input) for x_input in x_input_list[int(0.9*linspace_amount):]])
+    rotated_x_list = []
+    rotated_y_list = []
     animatetex.before_loop()
     for i in range(0, numiter + 1):
         rotate((i*360/numiter)*np.pi/180)
