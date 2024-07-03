@@ -30,33 +30,27 @@ fill opacity=.5]
 \end{document}
 '''
 
+def main():
+    """
+    
+    
+    
+    """
+    file_names()
+    make_merged()
+    for i in np.linspace(0,48,numiter):
+        with open(TeX_file, 'w') as TeX:
+            TeX.write(preamble)
+            TeX.write(r'\newcommand{\Vt}{' +f'{i}' +'}')
+            TeX.write(postscript)
+        compile_tex_to_pdf(TeX_file)
+        make_temp()
+        append_pdfs(merged_pdf, pdf_file, temp_pdf)
+        rename_pdf()
+    remove_first_page(merged_pdf, os.path.join(output_directory, 'final_output.pdf'))
+    clean_up()
 
-
-output_directory = r''
-
-# Initial PDF file
-merged_pdf = os.path.join(output_directory, 'merged_output.pdf') # make this the first frame
-
-for i in np.linspace(0,48,numiter):
-    # Create a TeX file for each iteration
-    tex_file = 'TeX_file.tex'
-    with open(tex_file, 'w') as TeX:
-        TeX.write(preamble)
-        TeX.write(r'\newcommand{\Vt}{' +f'{i}' +'}')
-        TeX.write(postscript)
-    compile_tex_to_pdf(tex_file)
-    # Append the generated PDF to the merged PDF
-    temp_pdf = os.path.join(output_directory, 'merged_output_temp.pdf')
-    append_pdfs(merged_pdf, 'file_{}.pdf'.format(1), temp_pdf)
-
-    # Rename the temporary merged PDF to the original merged PDF
-    shutil.move(temp_pdf, merged_pdf)
-    #subprocess.run(['mv', 'merged_output_temp.pdf', merged_pdf])
-
-
-remove_first_page(merged_pdf, os.path.join(output_directory, 'final_output.pdf'))
-
-# Clean up - remove individual TeX and PDF files
-clean_up()
+if __name__ == "__main__":
+    main()
 
 
