@@ -51,9 +51,11 @@ def make_merged():
 def during_loop():
     """
     Purpose:
+        Calls the functions which compile the tex and append its pdf to the merged pdf.
     Parameters:
+        No parameters.
     Return:
-    
+        Void.
     """
     compile_tex_to_pdf()
     make_temp()
@@ -66,8 +68,9 @@ def compile_tex_to_pdf():
     Purpose:
         Function to compile a TeX file to PDF
     Parameters:
+        No parameters.
     Return:
-    
+        Void.
     """
     subprocess.run(['pdflatex', TeX_file])
 
@@ -75,9 +78,11 @@ def compile_tex_to_pdf():
 def make_temp():
     """
     Purpose:
+        Makes a temporary pdf.
     Parameters:
+        No parameters.
     Return:
-    
+        Void.
     """
     global temp_pdf
     parent_directory = os.path.dirname(os.path.abspath(__file__))
@@ -91,9 +96,13 @@ def make_temp():
 def append_pdfs(pdf1, pdf2, output_pdf):
     """
     Purpose:
+        Appends the new pdf to the merged one.
     Parameters:
+        pdf1 - initial (big) pdf
+        pdf2 - attached pdf
+        output_pdf - temp pdf
     Return:
-    
+        Void.
     """
     subprocess.run(['gswin64c', '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + output_pdf, os.path.abspath(pdf1), os.path.abspath(pdf2)])
     #subprocess.run(['mgs', '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + output_pdf, pdf1, pdf2])
@@ -102,7 +111,10 @@ def rename_pdf():
     """
     Purpose:
         Rename the temporary merged PDF to the original merged PDF
-    
+    Parameters:
+        No parameters.
+    Return:
+        Void.
     """
     shutil.move(temp_pdf, merged_pdf)
     #subprocess.run(['mv', 'merged_output_temp.pdf', merged_pdf])
