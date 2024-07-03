@@ -8,6 +8,12 @@ from reportlab.pdfgen import canvas
 
 
 def before_loop():
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     file_names()
     make_merged()
 
@@ -36,6 +42,12 @@ def make_merged():
     merged_pdf = os.path.join(output_directory, merged_pdf)
 
 def during_loop():
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     compile_tex_to_pdf()
     make_temp()
     append_pdfs(merged_pdf,pdf_file, temp_pdf)
@@ -54,6 +66,12 @@ def compile_tex_to_pdf():
 
 
 def make_temp():
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     global temp_pdf
     parent_directory = os.path.dirname(os.path.abspath(__file__))
     temp_pdf = os.path.join(parent_directory, merged_temp)
@@ -84,6 +102,12 @@ def rename_pdf():
 
 
 def after_loop():
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     remove_first_page(merged_pdf, os.path.join(output_directory, 'final_output.pdf'))
     clean_up()
 

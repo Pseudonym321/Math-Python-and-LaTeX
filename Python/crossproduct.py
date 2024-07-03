@@ -79,14 +79,18 @@ end2 = r"""
 \end{document}
 """
 
-animatetex.before_loop()
-for angle in np.linspace(0,360,numiter):
-    with open(animatetex.TeX_file, 'w') as f:
-        f.write(start)
-        f.write(r'\def \t {' + f'{angle}' + r'}')
-        if angle <= 180:  
-            f.write(end2)
-        else:
-            f.write(end)
-    animatetex.during_loop()
-animatetex.after_loop()
+def main():
+    animatetex.before_loop()
+    for angle in np.linspace(0,360,numiter):
+        with open(animatetex.TeX_file, 'w') as f:
+            f.write(start)
+            f.write(r'\def \t {' + f'{angle}' + r'}')
+            if angle <= 180:  
+                f.write(end2)
+            else:
+                f.write(end)
+        animatetex.during_loop()
+    animatetex.after_loop()
+
+if __name__ == "__main__":
+    main()

@@ -77,17 +77,20 @@ def draw_path(x,y):
         return r'''\draw[] (0,8) -- (0,0);
 '''
 
+def main():
+    animatetex.before_loop()
+    for i in range(0, numiter + 1):
+        rotate((i*360/numiter)*np.pi/180)
+        with open(animatetex.TeX_file, 'w') as f:
+            f.write(start)
+            for pos in range(len(x_input_list)):
+                try:
+                    f.write(draw_path(rotated_x_list[pos], rotated_y_list[pos]))
+                except:
+                    pass
+            f.write(end)
+        animatetex.during_loop()
+    animatetex.after_loop()
 
-animatetex.before_loop()
-for i in range(0, numiter + 1):
-    rotate((i*360/numiter)*np.pi/180)
-    with open(animatetex.TeX_file, 'w') as f:
-        f.write(start)
-        for pos in range(len(x_input_list)):
-            try:
-                f.write(draw_path(rotated_x_list[pos], rotated_y_list[pos]))
-            except:
-                pass
-        f.write(end)
-    animatetex.during_loop()
-animatetex.after_loop()
+if __name__ == "__main__":
+    main()

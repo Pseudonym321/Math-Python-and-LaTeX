@@ -32,8 +32,9 @@ fill opacity=.5]
 
 def main():
     """
-    
-    
+    Purpose:
+    Parameters:
+    Return:
     
     """
     animatetex.before_loop()

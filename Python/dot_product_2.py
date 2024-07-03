@@ -40,24 +40,22 @@ end = r'''
 \end{document}
 '''
 
-def make_tikz_code(angle):
-    string = r''
-    string += start
-    string += r'\newcommand{\mytheta}{' +f'{angle}' +'}'
-    string += end
-    return string
+def main():
 
-animatetex.before_loop()
-for angle in np.linspace(0,180,numiter//2):
-    with open(animatetex.TeX_file, 'w') as f:
-        f.write(start)
-        f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
-        f.write(end)
-    animatetex.during_loop()
-for angle in np.linspace(180,0,numiter//2):
-    with open(animatetex.TeX_file, 'w') as f:
-        f.write(start)
-        f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
-        f.write(end)
-    animatetex.during_loop()
-animatetex.after_loop()
+    animatetex.before_loop()
+    for angle in np.linspace(0,180,numiter//2):
+        with open(animatetex.TeX_file, 'w') as f:
+            f.write(start)
+            f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
+            f.write(end)
+        animatetex.during_loop()
+    for angle in np.linspace(180,0,numiter//2):
+        with open(animatetex.TeX_file, 'w') as f:
+            f.write(start)
+            f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
+            f.write(end)
+        animatetex.during_loop()
+    animatetex.after_loop()
+
+if __name__ == "__main__":
+    main()

@@ -63,11 +63,15 @@ end = r'''
 \end{document}
 '''
 
-animatetex.before_loop()
-for angle in np.linspace(-360,360,numiter):
-    with open(animatetex.TeX_file, 'w') as f:
-        f.write(start)
-        f.write(r'\newcommand{\Vt}{' +f'{angle}' +'}\n')
-        f.write(end)
-    animatetex.during_loop()
-animatetex.after_loop()
+def main():
+  animatetex.before_loop()
+  for angle in np.linspace(-360,360,numiter):
+      with open(animatetex.TeX_file, 'w') as f:
+          f.write(start)
+          f.write(r'\newcommand{\Vt}{' +f'{angle}' +'}\n')
+          f.write(end)
+      animatetex.during_loop()
+  animatetex.after_loop()
+
+if __name__ == "__main__":
+    main()

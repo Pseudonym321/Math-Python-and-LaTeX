@@ -1,7 +1,4 @@
-import numpy as np
-import Modules.animatetex as animatetex
-numiter = 24
-preamble= r'''
+
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
 %maths
@@ -13,9 +10,9 @@ preamble= r'''
 \usetikzlibrary{decorations.pathreplacing,angles,quotes}
 \begin{document}
 \begin{frame}
-'''
-postscript = r'''
+\newcommand{\mytheta}{65.45454545454545}
 \begin{tikzpicture}[scale=1]
+\draw[white] (-2,-2) rectangle (2,7);
 \coordinate (O) at (0,0);
 \coordinate (V1) at (0:1.75);
 \coordinate (V2) at (\mytheta:4);
@@ -31,28 +28,8 @@ postscript = r'''
 \draw[-Triangle] (0,0) -- (V1) node[pos=1,right] {$\va{p}$};
 
 %%% GEOMETRY %%%
-\fill[red,opacity=0.2] ({1.75*cos(\mytheta)},0) -- ({1.75*cos(\mytheta)},4) -- (0,4) -- (0,0);
-\draw[] ({1.75*cos(\mytheta)},0) -- ({1.75*cos(\mytheta)},4) -- (0,4) -- (0,0);
+\fill[red,opacity=0.2] (0,0) -- ++(\mytheta:1.75) -- ++(0,4) -- ++(\mytheta+180:1.75);
+\draw[] (0,0) -- ++(\mytheta:1.75) -- ++(0,4) -- ++(\mytheta+180:1.75);
 \end{tikzpicture}
 \end{frame}
 \end{document}
-'''
-
-def main():
-    animatetex.before_loop()
-    for angle in np.linspace(0,180,numiter//2):
-        with open(animatetex.TeX_file, 'w') as f:
-            f.write(preamble)
-            f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
-            f.write(postscript)
-        animatetex.during_loop()
-    for angle in np.linspace(180,0,numiter//2):
-        with open(animatetex.TeX_file, 'w') as f:
-            f.write(preamble)
-            f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
-            f.write(postscript)
-        animatetex.during_loop()
-    animatetex.after_loop()
-
-if __name__ == "__main__":
-    main()
