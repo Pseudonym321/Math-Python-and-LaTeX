@@ -123,9 +123,11 @@ def rename_pdf():
 def after_loop():
     """
     Purpose:
+        Calls the functions which remove the initial temporary pdf and all those pesky tex files.
     Parameters:
+        No parameters.
     Return:
-    
+        Void.
     """
     remove_first_page(merged_pdf, os.path.join(output_directory, 'final_output.pdf'))
     clean_up()
@@ -133,9 +135,12 @@ def after_loop():
 def remove_first_page(input_pdf, output_pdf):
     """
     Purpose:
+        Removes the first page of the merged pdf.
     Parameters:
+        input_pdf - the merged pdf
+        output_pdf - the final document
     Return:
-    
+        Void.
     """
     pdf_reader = PdfReader(input_pdf)
     pdf_writer = PdfWriter()
@@ -150,8 +155,11 @@ def remove_first_page(input_pdf, output_pdf):
 def clean_up():
     """
     Purpose:
+        Removes all those pesky tex files.
     Parameters:
+        No parameters.
     Return:
+        Void.
     """
     try:
         os.remove('TeX_file.tex')

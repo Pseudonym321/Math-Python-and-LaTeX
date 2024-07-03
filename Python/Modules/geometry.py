@@ -4,6 +4,16 @@ import numpy
 import sympy
 
 def invert_point(x, y):
+    """
+    Purpose:
+        Performs inversion on a complex point.
+    Parameters:
+        x - the real input
+        y - the complex input
+    Return:
+        inv_arg - the argument
+        inv_mod - the modulus
+    """
     if x == 0 and y == 0:
         return math.inf
     arg, mod = cartesian_to_polar(x, y)
