@@ -8,27 +8,75 @@ linspace_amount = 38
 numiter = 24
 # x_input is synonymous with "A" from the diagram
 
-def x_input_function(x_input):
+def x_input_function(x_input:float):
+    """
+    Purpose:
+        Delivers the x coordinates of the inverse stereographic projection of the plane.
+    Parameters:
+        float - x_input: points on the real line
+    Return:
+        the x coordinates of the inverse stereographic projection of the points.
+    """
     return (2*x_input*r*np.abs((L**2)/(x_input**2+L**2))**(1/2))/np.abs(x_input**2+L**2)**(1/2)
 
 def y_input_function_upper(x_input):
+    """
+    Purpose:
+        Makes a spinning bumpy sphere.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
     return (np.abs(r**2-x_input**2)**(1/2)+L-r)
 
 def y_input_function_lower(x_input):
+    """
+    Purpose:
+        Makes a spinning bumpy sphere.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
     return (-np.abs(r**2-x_input**2)**(1/2)+L-r)
 
 # https://stackoverflow.com/questions/34372480/rotate-point-about-another-point-in-degrees-python
 import math
 
 def rotate_x(x,y,theta): #rotate x,y around xo,yo by theta (rad)
+    """
+    Purpose:
+        Makes a spinning bumpy sphere.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
     xr=math.cos(theta)*(x-0)-math.sin(theta)*(y-(L-r)) + 0
     return xr
+
 def rotate_y(y,x,theta):
+    """
+    Purpose:
+        Makes a spinning bumpy sphere.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
     yr=math.sin(theta)*(x-0)+math.cos(theta)*(y-(L-r))  + (L-r)
     return yr
 
-
 def rotate(angle):
+    """
+    Purpose:
+        Makes a spinning bumpy sphere.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
     global rotated_x_list,rotated_y_list
     rotated_x_list.clear()
     rotated_y_list.clear()
@@ -50,6 +98,7 @@ start= r'''
 \draw[black,-latex,thick] (-10,0) -- (10,0); % x-axis
 \draw[] (0,6) circle [radius=2];
 '''
+
 end = r'''
 \end{tikzpicture}
 \end{center}
@@ -60,9 +109,12 @@ end = r'''
 
 def draw_path(x,y):
     """
-    
-    
-    
+    Purpose:
+        Makes a spinning bumpy sphere.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
     """
     if np.abs((-L*x)/(y-L)) < 40:
         return r'''\draw[] (0,8) -- ({},0);
@@ -73,6 +125,14 @@ def draw_path(x,y):
 '''
 
 def main():
+    """
+    Purpose:
+        Makes a spinning bumpy sphere.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
     global x_input_list, y_input_list, rotated_x_list, rotated_y_list
     x_input_list = [x_input_function(x_input) for x_input in np.linspace(-10,10,linspace_amount)]
     y_input_list = [y_input_function_upper(x_input) for x_input in x_input_list[:int(0.1*linspace_amount)]]

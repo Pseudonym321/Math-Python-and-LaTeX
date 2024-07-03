@@ -1,7 +1,9 @@
 
 import numpy as np
 import Modules.animatetex as animatetex
+
 numiter = 24
+
 preamble= r'''
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
@@ -9,6 +11,7 @@ preamble= r'''
 \usepackage{tikz-3dplot}
 \pgfplotsset{compat=1.18}
 '''
+
 postscript = r'''
 \begin{document}
 \begin{frame}
@@ -50,5 +53,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

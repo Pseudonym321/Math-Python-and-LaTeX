@@ -1,7 +1,9 @@
 
 import numpy as np
 import Modules.animatetex as animatetex
+
 numiter = 24*5
+
 start= r'''
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
@@ -40,11 +42,8 @@ end = r'''
 \coordinate (UandV) at ({\Pa+(\Ua+\Va)},{\Pb+\Ub+\Vb},{\Pc+\Uc+\Vc});
 \coordinate (CP) at ({\Pa+(\Ub*\Vc-\Uc*\Vb)},{\Pb-(\Ua*\Vc-\Uc*\Va)},{\Pc+(\Ua*\Vb-\Ub*\Va)});
 
-
-
 \draw[domain=-360:360,very thin,smooth,samples=500,variable=\t]
   plot ({\Pa+\Vr*sin(4*\t)*(1-(\t/360)^2)^(0.5)},{\Pb+\Vr*\t/360},{\Pc+\Vr*cos(4*\t)*(1-(\t/360)^2)^0.5});
-
 
 %%% VECTOR V %%%
 \draw[thick,-latex] (O) -- ({\Va},{\Vb},{\Vc});
@@ -64,6 +63,15 @@ end = r'''
 '''
 
 def main():
+  """
+    Purpose:
+        Makes an animation of the cross product of a fixed vector and another one which
+        follows the trajectory of a loxodrome.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
   animatetex.before_loop()
   for angle in np.linspace(-360,360,numiter):
       with open(animatetex.TeX_file, 'w') as f:

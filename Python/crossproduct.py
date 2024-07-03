@@ -1,7 +1,9 @@
 
 import numpy as np
 import Modules.animatetex as animatetex
+
 numiter = 24
+
 start = r'''
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
@@ -80,6 +82,14 @@ end2 = r"""
 """
 
 def main():
+    """
+    Purpose:
+        Makes an animation of the cross and dot products.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
     animatetex.before_loop()
     for angle in np.linspace(0,360,numiter):
         with open(animatetex.TeX_file, 'w') as f:

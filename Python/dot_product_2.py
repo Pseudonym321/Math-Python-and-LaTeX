@@ -1,7 +1,9 @@
 
 import numpy as np
 import Modules.animatetex as animatetex
+
 numiter = 24
+
 start= r'''
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
@@ -15,6 +17,7 @@ start= r'''
 \begin{document}
 \begin{frame}
 '''
+
 end = r'''
 \begin{tikzpicture}[scale=1]
 \draw[white] (-2,-2) rectangle (2,7);
@@ -41,6 +44,14 @@ end = r'''
 '''
 
 def main():
+    """
+    Purpose:
+        Makes an animation of the trapezoidal dot product.
+    Parameters:
+        No parameters.
+    Return:
+        Void.
+    """
     animatetex.before_loop()
     for angle in np.linspace(0,180,numiter//2):
         with open(animatetex.TeX_file, 'w') as f:
