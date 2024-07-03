@@ -6,11 +6,23 @@ from pypdf import PdfReader, PdfWriter
 import subprocess
 
 def file_names():
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     global TeX_file, pdf_file
     TeX_file = "TeX_file.tex"
     pdf_file = "TeX_file.pdf"
 
 def make_merged():
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     global output_directory, merged_pdf
     output_directory = r''
     merged_pdf = os.path.join(output_directory, 'merged_output.pdf')
@@ -20,18 +32,31 @@ def make_merged():
 def compile_tex_to_pdf(tex_file):
     """
     Purpose:
-    
+    Parameters:
+    Return:
     
     """
     subprocess.run(['pdflatex', tex_file])
 
 def make_temp():
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     global temp_pdf
     temp_pdf = os.path.join(output_directory, 'merged_output_temp.pdf')
 
 
 # Function to append two PDF files
 def append_pdfs(pdf1, pdf2, output_pdf):
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     subprocess.run(['gswin64c', '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + output_pdf, os.path.abspath(pdf1), os.path.abspath(pdf2)])
     #subprocess.run(['mgs', '-dBATCH', '-dNOPAUSE', '-q', '-sDEVICE=pdfwrite', '-sOutputFile=' + output_pdf, pdf1, pdf2])
 
@@ -45,6 +70,12 @@ def rename_pdf():
     #subprocess.run(['mv', 'merged_output_temp.pdf', merged_pdf])
 
 def remove_first_page(input_pdf, output_pdf):
+    """
+    Purpose:
+    Parameters:
+    Return:
+    
+    """
     pdf_reader = PdfReader(input_pdf)
     pdf_writer = PdfWriter()
 
