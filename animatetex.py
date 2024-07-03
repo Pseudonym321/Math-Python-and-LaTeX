@@ -37,7 +37,7 @@ def make_merged():
 def during_loop():
     compile_tex_to_pdf()
     make_temp()
-    append_pdfs(merged_pdf, pdf_file, temp_pdf)
+    append_pdfs(merged_pdf,pdf_file, temp_pdf)
     rename_pdf()
 
 
