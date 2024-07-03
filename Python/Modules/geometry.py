@@ -21,7 +21,17 @@ def invert_point(x, y):
     inv_mod = 1/mod
     return inv_arg, inv_mod
 
-def cartesian_to_polar(x, y): # works, output in degrees
+def cartesian_to_polar(x, y):
+    """
+    Purpose:
+        Converts cartesian complex points to their polar form in degrees.
+    Parameters:
+        x - the real input
+        y - the complex input
+    Return:
+        inv_arg - the argument
+        inv_mod - the modulus
+    """
     arg = math.atan2(y,x)*(180/math.pi)
     mod = math.sqrt(x**2 + y**2)
     return arg, mod
