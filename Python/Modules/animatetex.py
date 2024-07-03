@@ -10,8 +10,11 @@ from reportlab.pdfgen import canvas
 def before_loop():
     """
     Purpose:
+        Calls file_names() and make_merged() to save space.
     Parameters:
+        No parameters.
     Return:
+        Void.
     
     """
     file_names()
@@ -20,9 +23,11 @@ def before_loop():
 def file_names():
     """
     Purpose:
+        Declares the names/paths for various temporary files.
     Parameters:
+        No parameters.
     Return:
-    
+        Void.
     """
     global TeX_file, pdf_file, output_directory, merged_temp, merged_pdf
     TeX_file = "TeX_file.tex"
@@ -34,9 +39,11 @@ def file_names():
 def make_merged():
     """
     Purpose:
+        Makes an initial pdf page, which the gif is appended to - hence remove_first_page()
     Parameters:
+        No parameters.
     Return:
-    
+        Void.
     """
     global merged_pdf
     merged_pdf = os.path.join(output_directory, merged_pdf)

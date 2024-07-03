@@ -41,7 +41,6 @@ end = r'''
 '''
 
 def main():
-
     animatetex.before_loop()
     for angle in np.linspace(0,180,numiter//2):
         with open(animatetex.TeX_file, 'w') as f:
