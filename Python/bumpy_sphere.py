@@ -1,6 +1,6 @@
 
 import numpy as np
-from animatetex import *
+import animatetex
 numiter = 24
 preamble= r'''
 \documentclass{beamer}
@@ -36,19 +36,14 @@ def main():
     
     
     """
-    file_names()
-    make_merged()
-    for i in np.linspace(0,48,numiter):
-        with open(TeX_file, 'w') as TeX:
+    animatetex.before_loop()
+    for theta in np.linspace(0,48,numiter):
+        with open(animatetex.TeX_file, 'w') as TeX:
             TeX.write(preamble)
-            TeX.write(r'\newcommand{\Vt}{' +f'{i}' +'}')
+            TeX.write(r'\newcommand{\Vt}{' +f'{theta}' +'}')
             TeX.write(postscript)
-        compile_tex_to_pdf(TeX_file)
-        make_temp()
-        append_pdfs(merged_pdf, pdf_file, temp_pdf)
-        rename_pdf()
-    remove_first_page(merged_pdf, os.path.join(output_directory, 'final_output.pdf'))
-    clean_up()
+        animatetex.during_loop()
+    animatetex.after_loop()
 
 if __name__ == "__main__":
     main()

@@ -4,6 +4,12 @@ import shutil
 import os
 from pypdf import PdfReader, PdfWriter
 import subprocess
+from reportlab.pdfgen import canvas
+
+
+def before_loop():
+    file_names()
+    make_merged()
 
 def file_names():
     """
@@ -12,9 +18,11 @@ def file_names():
     Return:
     
     """
-    global TeX_file, pdf_file
+    global TeX_file, pdf_file, output_directory, merged_temp
     TeX_file = "TeX_file.tex"
     pdf_file = "TeX_file.pdf"
+    output_directory = r''
+    merged_temp = 'merged_output_temp.pdf'
 
 def make_merged():
     """
@@ -23,30 +31,34 @@ def make_merged():
     Return:
     
     """
-    global output_directory, merged_pdf
-    output_directory = r''
+    global merged_pdf
     merged_pdf = os.path.join(output_directory, 'merged_output.pdf')
 
+def during_loop():
+    compile_tex_to_pdf()
+    make_temp()
+    append_pdfs(merged_pdf, pdf_file, temp_pdf)
+    rename_pdf()
 
-# Function to compile a TeX file to PDF
-def compile_tex_to_pdf(tex_file):
+
+def compile_tex_to_pdf():
     """
     Purpose:
+        Function to compile a TeX file to PDF
     Parameters:
     Return:
     
     """
-    subprocess.run(['pdflatex', tex_file])
+    subprocess.run(['pdflatex', TeX_file])
+
 
 def make_temp():
-    """
-    Purpose:
-    Parameters:
-    Return:
-    
-    """
     global temp_pdf
-    temp_pdf = os.path.join(output_directory, 'merged_output_temp.pdf')
+    parent_directory = os.path.dirname(os.path.abspath(__file__))
+    temp_pdf = os.path.join(parent_directory, merged_temp)
+
+    c = canvas.Canvas(temp_pdf)
+    c.save()
 
 
 # Function to append two PDF files
@@ -68,6 +80,11 @@ def rename_pdf():
     """
     shutil.move(temp_pdf, merged_pdf)
     #subprocess.run(['mv', 'merged_output_temp.pdf', merged_pdf])
+
+
+def after_loop():
+    remove_first_page(merged_pdf, os.path.join(output_directory, 'final_output.pdf'))
+    clean_up()
 
 def remove_first_page(input_pdf, output_pdf):
     """
