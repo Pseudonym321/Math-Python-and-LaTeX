@@ -59,17 +59,21 @@ end = r'''
 \end{document}
 '''
 
-animatetex.before_loop()
-for angle in np.linspace(-30,50,numiter//2):
-    with open(animatetex.TeX_file, 'w') as f:
-        f.write(start)
-        f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
-        f.write(end)
-    animatetex.during_loop()
-for angle in np.linspace(50,-30,numiter//2):
-    with open(animatetex.TeX_file, 'w') as f:
-        f.write(start)
-        f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
-        f.write(end)
-    animatetex.during_loop()
-animatetex.after_loop()
+def main():
+    animatetex.before_loop()
+    for angle in np.linspace(-30,50,numiter//2):
+        with open(animatetex.TeX_file, 'w') as f:
+            f.write(start)
+            f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
+            f.write(end)
+        animatetex.during_loop()
+    for angle in np.linspace(50,-30,numiter//2):
+        with open(animatetex.TeX_file, 'w') as f:
+            f.write(start)
+            f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
+            f.write(end)
+        animatetex.during_loop()
+    animatetex.after_loop()
+
+if __name__ == "__main__":
+    main()

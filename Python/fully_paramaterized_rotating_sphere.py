@@ -35,11 +35,15 @@ postscript = r"""
 \end{frame}
 \end{document}"""
 
-animatetex.before_loop()
-for angle in range(0,360,360//24):
-    with open(animatetex.TeX_file, "w") as tex:
-        tex.write(preamble)
-        tex.write(f"\\newcommand{{\\Vpol}}{{{angle}}}\n")
-        tex.write(postscript)
-    animatetex.during_loop()
-animatetex.after_loop()
+def main():
+    animatetex.before_loop()
+    for angle in range(0,360,360//24):
+        with open(animatetex.TeX_file, "w") as tex:
+            tex.write(preamble)
+            tex.write(f"\\newcommand{{\\Vpol}}{{{angle}}}\n")
+            tex.write(postscript)
+        animatetex.during_loop()
+    animatetex.after_loop()
+
+if __name__ == "__main__":
+    main()
