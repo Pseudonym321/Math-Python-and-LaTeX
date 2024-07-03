@@ -18,11 +18,12 @@ def file_names():
     Return:
     
     """
-    global TeX_file, pdf_file, output_directory, merged_temp
+    global TeX_file, pdf_file, output_directory, merged_temp, merged_pdf
     TeX_file = "TeX_file.tex"
     pdf_file = "TeX_file.pdf"
     output_directory = r"C:\Users\twill\OneDrive\Documents\Files\Professional\GitHub\Math-Python-and-LaTeX-1"
     merged_temp = 'merged_output_temp.pdf'
+    merged_pdf = 'merged_output.pdf'
 
 def make_merged():
     """
@@ -32,7 +33,7 @@ def make_merged():
     
     """
     global merged_pdf
-    merged_pdf = os.path.join(output_directory, 'merged_output.pdf')
+    merged_pdf = os.path.join(output_directory, merged_pdf)
 
 def during_loop():
     compile_tex_to_pdf()
@@ -139,6 +140,10 @@ def clean_up():
         pass
     try:
         os.remove('TeX_file.toc')
+    except FileNotFoundError:
+        pass
+    try:
+        os.remove(merged_pdf)
     except FileNotFoundError:
         pass
 

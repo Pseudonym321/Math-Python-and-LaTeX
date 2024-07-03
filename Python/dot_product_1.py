@@ -46,4 +46,10 @@ for angle in np.linspace(0,180,numiter//2):
         f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
         f.write(postscript)
     animatetex.during_loop()
+for angle in np.linspace(180,0,numiter//2):
+    with open(animatetex.TeX_file, 'w') as f:
+        f.write(preamble)
+        f.write(r'\newcommand{\mytheta}{' +f'{angle}' +'}')
+        f.write(postscript)
+    animatetex.during_loop()
 animatetex.after_loop()
