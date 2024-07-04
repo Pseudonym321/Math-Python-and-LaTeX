@@ -1,7 +1,8 @@
 Hello World!
 
-I am Jasper Nice (formerly Tyler), and this is a showcase of my work
+I am Jasper Nice (formerly Tyler), and this is a showcase of my LaTeX and animated math diagrams
 
-I love making animated math gifs, and plan on doing it professionally one day
+My dream is to one day make animated scientific diagrams for a living
 
-I also showcase my LaTeX and Math Notes here too, along with the code for my animations
+I have also done undergraduate research into mathematical modeling using TikZ:
+https://roam.macewan.ca/items/ce0acdfe-f89c-4afa-9b21-3319733989c6
