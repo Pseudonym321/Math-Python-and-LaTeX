@@ -46,7 +46,7 @@ end = r'''
 def main():
     """
     Purpose:
-        Makes an animation of the trapezoidal dot product.
+        Makes an animation of the parallelogram dot product.
     Parameters:
         No parameters.
     Return:

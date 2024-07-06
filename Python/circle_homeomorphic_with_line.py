@@ -127,7 +127,7 @@ def draw_path(x,y):
 def main():
     """
     Purpose:
-        Makes a spinning bumpy sphere.
+        Makes a gif which demonstrates that circles are homeomorphic to lines.
     Parameters:
         No parameters.
     Return:
