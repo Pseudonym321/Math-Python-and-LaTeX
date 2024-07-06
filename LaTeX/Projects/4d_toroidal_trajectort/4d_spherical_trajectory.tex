@@ -1,26 +1,15 @@
-\documentclass{article}
+\documentclass{beamer}
+\beamertemplatenavigationsymbolsempty
 \usepackage{tikz,tikz-3dplot,pgfplots}
 \usetikzlibrary{spath3}
 \pgfplotsset{compat=1.18}
+\newcommand{\Vn}{360}
 \begin{document}
+\centering
 \tdplotsetmaincoords{0}{90}
-\begin{tikzpicture}[
-tdplot_main_coords,
-scale=0.5
-]
-%\draw[-latex] (-2,0,0) -- (2,0,0) node[pos=1]{$x$};
-%\draw[-latex] (0,-2,0) -- (0,2,0) node[pos=1]{$y$};
-%\draw[-latex] (0,0,-2) -- (0,0,2) node[pos=1]{$z$};
-
-%\draw[domain=-360:360,smooth,samples=100,variable=\Vt] plot ({sqrt(1-(\Vt/360)^2)*sin(3*\Vt)},\Vt/360,{sqrt(1-(\Vt/360)^2)*cos(3*\Vt)});
-
-
-\foreach \Vn in {0} {
-\tdplotsetrotatedcoords{0}{\Vn}{0}
-\draw[tdplot_rotated_coords,domain=90:360,smooth,very thin,samples=5000,variable=\Vt] plot ({sqrt(1-(\Vt/360)^2)*sin(40*\Vt)/(1-sqrt(1-(\Vt/360)^2)*cos(40*\Vt)))},{(\Vt/360)/(1-sqrt(1-(\Vt/360)^2)*cos(40*\Vt))*cos(3*\Vt)},{(\Vt/360)/(1-sqrt(1-(\Vt/360)^2)*cos(40*\Vt))*sin(3*\Vt)});}
-
-
-
-
+\begin{tikzpicture}[tdplot_main_coords]
+\draw[white,tdplot_main_coords] (-4.5,-3.5) rectangle (4.5,5);
+\tdplotsetrotatedcoords{0}{0}{0}
+\draw[tdplot_rotated_coords,domain=90:\Vn,smooth,very thin,samples=5000,variable=\Vt] plot ({sqrt(1-(\Vt/360)^2)*sin(40*\Vt)/(1-sqrt(1-(\Vt/360)^2)*cos(40*\Vt)))},{(\Vt/360)/(1-sqrt(1-(\Vt/360)^2)*cos(40*\Vt))*cos(3*\Vt)},{(\Vt/360)/(1-sqrt(1-(\Vt/360)^2)*cos(40*\Vt))*sin(3*\Vt)});
 \end{tikzpicture}
 \end{document}
