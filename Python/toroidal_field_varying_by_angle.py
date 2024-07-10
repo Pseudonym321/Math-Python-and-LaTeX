@@ -2,7 +2,7 @@
 import numpy as np
 import Modules.animatetex as animatetex
 
-numiter = 24
+numiter = 24*5
 
 preamble= r'''
 \documentclass{beamer}
@@ -18,6 +18,7 @@ preamble= r'''
 \centering
 \tdplotsetmaincoords{60}{120}
 \begin{tikzpicture}[tdplot_main_coords]
+\clip[tdplot_screen_coords] (-5,-4) rectangle (5,4);
 %%% AXES %%%
 %\draw[-latex] (-3,0,0) -- (3,0,0) node[pos=1]{$x$};
 %\draw[-latex] (0,-3,0) -- (0,3,0) node[pos=1]{$y$};
@@ -52,7 +53,6 @@ postscript = r'''
 \draw[variable=\Vp,smooth,domain=0:360,very thin] plot ({sin(\Vtheta)*\Rlon{\Vt}*cos(\Vp)},{sin(\Vtheta)*\Rlon{\Vt}*sin(\Vp)},{\Clon{\Vt}+\Rlon{\Vt}*cos(\Vtheta)});
 }
 
-\draw[tdplot_screen_coords,white] (-5,-4) rectangle (5,4);
 \end{tikzpicture}
 
 
@@ -69,13 +69,19 @@ def main():
         Void.
     """
     animatetex.before_loop()
-    for theta in np.linspace(-60,60,numiter//2):
+    for theta in np.linspace(0,85,numiter//3):
         with open(animatetex.TeX_file, 'w') as TeX:
             TeX.write(preamble)
             TeX.write(r'\newcommand{\Vt}{' +f'{theta}' +'}')
             TeX.write(postscript)
         animatetex.during_loop()
-    for theta in np.linspace(60,-60,numiter//2):
+    for theta in np.linspace(95,265,numiter//3):
+        with open(animatetex.TeX_file, 'w') as TeX:
+            TeX.write(preamble)
+            TeX.write(r'\newcommand{\Vt}{' +f'{theta}' +'}')
+            TeX.write(postscript)
+        animatetex.during_loop()
+    for theta in np.linspace(275,360,numiter//3):
         with open(animatetex.TeX_file, 'w') as TeX:
             TeX.write(preamble)
             TeX.write(r'\newcommand{\Vt}{' +f'{theta}' +'}')
