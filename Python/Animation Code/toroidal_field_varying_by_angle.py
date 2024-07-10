@@ -2,9 +2,9 @@
 import numpy as np
 import Animation_Modules.animatetex as animatetex
 
-numiter = 18
+numiter = 19
 
-preamble= r'''
+preamble = r'''
 \documentclass{beamer}
 \beamertemplatenavigationsymbolsempty
 \usepackage{tikz,tikz-3dplot}
@@ -54,10 +54,7 @@ postscript = r'''
 \draw[variable=\Vp,smooth,domain=0:360,very thin] plot ({sin(\Vtheta)*\Rlon{\Vt}*cos(\Vp)},{sin(\Vtheta)*\Rlon{\Vt}*sin(\Vp)},{\Clon{\Vt}+\Rlon{\Vt}*cos(\Vtheta)});
 }
 
-
 \end{tikzpicture}
-
-
 \end{document}
 '''
 
