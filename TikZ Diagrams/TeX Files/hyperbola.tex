@@ -130,6 +130,34 @@ And these hyperbolic functions have identities similar to the trigonometrics; fo
 Which can be proves by arithmetically working it out from the definition.
 
 
+\newpage
 
+{\bf{}EXAMPLE} Find the area between the branches of the hyperbola $y^2-x^2=4$ for $0\leq x\leq1$.
+
+\[\Rightarrow y^2=4+x^2=\left\{\begin{aligned}\sqrt{x^2+4}&\quad for\quad y<0\\-\sqrt{x^2+4}&\quad for\quad y\geq0\end{aligned}\right.=\left\{\begin{aligned}x=a\sinh t\\y=a\cosh t\end{aligned}\right.\]
+
+General hyperbola: $y^2/b^2-x^2/a^2=1$
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[standard,domain=-4:4,xtick={\empty},ytick={\empty}]
+\addplot[] {(x^2+4)^0.5};
+\addplot[] {-(x^2+4)^0.5};
+\addplot[dashed] {x};
+\fill[] (0,2) circle [radius=0.15] node[above right]{b};
+\node[] at (3,1) {y=bx/a};
+\addplot[dashed] {-x};
+\node[] at (3,-1) {y=-bx/a};
+\fill[] (0,-2) circle [radius=0.15] node[below right]{a};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+And we could solve this by paramaterizing the equation or using a substitution. Both hyperbolic.
+
+\vspace{10pt}
+
+We are definitely going to be expected to know hyperbolic properties, such as $\sinh2t=2\sinh t\cosh t$. These are similar to their trigonometric counterparts.
 
 \end{document}

@@ -10,8 +10,8 @@
 \usetikzlibrary{decorations.pathreplacing,angles,quotes,perspective,intersections}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usepgfplotslibrary{statistics,fillbetween}
-
+\usepgfplotslibrary{statistics,fillbetween,external}
+\tikzexternalize
 \pgfplotsset{
     standard/.style={
     axis line style = thick,
@@ -334,6 +334,87 @@ xlabel={$x$}, ylabel={$y$},
 \node[below] at (3.14159*2,0) {$2\pi$};
 \node[below] at (3.14159*5/2,0) {$\frac{5\pi}{2}$};
 \end{axis}
+\end{tikzpicture}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{tikzpicture}[scale=3]
+\draw[thick,-stealth] (0,-1.3) -- (0,1.3);
+\draw[thick,-stealth] (-1.3,0) -- (1.3,0);
+\coordinate (O) at (0,0);
+\draw[] (O) circle [radius=1];
+\draw[-latex,domain=360:925,variable=\t,smooth,samples=75,red] plot ({\t}: {0.0006*\t});
+\node[above left] at (865:0.0006*865) {${\color{red}\beta}$};
+\draw[red] (O) -- (925:1);
+\draw[red,-latex] (-0.75,0) arc [start angle=180, end angle=205, radius=0.75] node[pos=0.5,left]{$\rho$};
+\draw[OliveGreen] (O) -- (25:1) -- (0,0.42262);
+\draw[OliveGreen] (925:1) -- (0,-0.42262);
+\draw[OliveGreen,very thick] (O) -- (0,-0.42262);
+\draw[OliveGreen,-latex] (0.6,0) arc[start angle=0, end angle=25, radius=0.6] node[pos=0.5,right]{$\rho$};
+\draw [decorate,color=OliveGreen, decoration = {brace,mirror,raise=3pt}] (0,-0.42262) -- (O) node[pos=0.5,right=3pt,OliveGreen]{$\sin\beta$};
+\draw [decorate,color=OliveGreen, decoration = {brace,mirror,raise=3pt}] (1,0) -- (1,0.42262) node[pos=0.5,right=3pt,OliveGreen]{$\sin\rho$};
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}
+\begin{tikzpicture}[scale=1.5]
+  \begin{axis}[%
+        axis equal,
+        enlargelimits = true,
+        samples = 45, samples y = 45,
+        axis lines = none, ticks = none,
+        cyl/.style = {%
+                surf,
+                black!30!,
+                variable = \u,
+                variable y = \v,
+                z buffer = sort,
+                faceted color=black!70!,
+                },
+        %view/h = 125, view/v = 25
+        ]
+
+    \addplot3[%         (-) Z-SEMIAXIS
+        cyl,
+        domain = -3:3,
+        y domain = 0:360,
+        ] ({cos(v)}, {sin(v)}, {min(u,abs(cos(v)),abs(sin(v)))});
+
+    \addplot3[%         (-) X-SEMIAXIS
+        cyl,
+        domain = -3:3,
+        y domain = 0:360,
+        ] ({min(u,-abs(cos(v)),-abs(sin(v)))}, {cos(v)}, {sin(v)});
+
+
+    \addplot3[%         (+) Y-SEMIAXIS
+        cyl,
+        domain = 0:360,
+        y domain = -3:3,
+        ] ({cos(u)}, {max(v,abs(cos(u)),abs(sin(u)))}, {sin(u)});
+
+    \addplot3[%         (+) X-SEMIAXIS
+        cyl,
+        domain = -3:3,
+        y domain = 0:360,
+        ] ({max(u,abs(cos(v)),abs(sin(v)))}, {cos(v)}, {sin(v)});
+
+    \addplot3[%         (+) X-SEMIAXIS
+        cyl,
+        domain = -3:3,
+        y domain = 0:360,
+        ] ({cos(v)}, {sin(v)}, {max(u,abs(cos(v)),abs(sin(v)))});
+
+    \addplot3[%         (-) Y-SEMIAXIS
+        cyl,
+        domain = 0:360,
+        y domain = -3:3,
+        ] ({cos(u)}, {min(-abs(cos(u)),-abs(sin(u)),v)}, {sin(u)});
+
+    \end{axis}
 \end{tikzpicture}
 \end{frame}
 
